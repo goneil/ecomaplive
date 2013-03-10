@@ -1,28 +1,63 @@
 <?php
 class Point {
+    private $id;
+    private $projectID;
 	private $lat;
 	private $lng;
-	private $map;
-	private $uid;
 	private $range;
 	private $value;
 	private $time;
+    private static $database;
 	
-	function __construct($lat, $lng, $map, $uid, $range, $value, $time = "") {
+	function __construct($projectID, $lat, $lng, $range, $value, $time = "") {
+        $this->database = new Database();
+        $this->projectID = $projectID;
 		$this->lat = $lat;
 		$this->lng = $lng;
-		$this->map = $map;
-		$this->uid = $uid;
 		$this->range = $range;
 		$this->value = $value;
 		//$time = new DateTime($time);
 		//$this->time = $time->format("Y-m-d H:i:s");
-		$this->time = strtotime($time);
+        date_default_timezone_set('America/Cambridge_bay');
+        $timezone = date_default_timezone_get();
+		$this->time = strtotime($timezone, $time);
 		if (!$this->time) {
 			$this->time = time();
 		}
 	}
+
+    function exportToDB(){
+		$query = "INSERT INTO `point` VALUES(DEFAULT, '$this->projectID',
+                  '$this->lat', '$this->lng', '$this->range', '$this->value',
+                  $this->time)";
+		$this->database->query($query);
+		$this->id = $this->database->getConnection()->insert_id;
+    }
+
+    // TODO return point from db with id $id
+    // might have an error with database
+    static function loadPoint($id){
+        $query = "SELECT * FROM `point` WHERE `id` = '$id'";
+        $database = new Database();
+		$info = $database->query($query);
+        if ($info){
+            $info = $info->fetch_array();
+            $point = new Point($info['project'], $info['lat'], $info['lng'],
+                               $info['range'], $info['val'], $info['time']);
+            $point.setID($info['id']);
+            return $point;
+        } else{
+            echo "Point::loadPoint: no points with id " . $id;
+            return null;
+        }
+    }
+
+    function setID($id){
+        $this->id = $id;
+    }
 	
+    // TODO function not used
+    // function will also fail
 	function getJSCoords() {
 		return "[$this->lat,$this->lng,$this->range,$this->value,$this->uid,$this->time]";
 	}

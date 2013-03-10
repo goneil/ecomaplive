@@ -8,8 +8,7 @@ if (isset($_POST['upload'])) {
 	} else {
 		$user = $_SESSION['user'];
 	}
-	filterQuotes($_POST['map']);
-	$map = new Map($_POST['map']);
+    $project = new Project($request[1]);
 	$filename = $_FILES['file']['tmp_name'];
 	$file = file($filename);
 	for ($i = 0; $i < count($file); $i++) {
@@ -20,19 +19,30 @@ if (isset($_POST['upload'])) {
 		$file[$i][4] .= ' ' . $file[$i][5];
 	}
 	if(count($file) > $max) {
+        //echo "count > max";
 		header('Location: http://'.$_SERVER['HTTP_HOST'].'/upload/error/'.count($file));
 	} else {
 		foreach ($file as $line) {
+            //echo "parsing line";
+            // line 0: latitude
+            // line 1: longitude
+            // line 2: range
+            // line 3: val
+            // line 4: time
 			if ($line[3] > 1) $line[3] = 1;
 			if ($line[3] < 0) $line[3] = 0;
-			$point = new Point($line[0], $line[1], $map, $user->getId(), $line[2], $line[3], $line[4]);
-			$map->addPoint($point);
+            //TODO change to project not map
+			$point = new Point($project->getID(), $line[0], $line[1], $line[2], $line[3], $line[4]);
+            $point->exportToDB();
 		}
-		header('Location: http://'.$_SERVER['HTTP_HOST'].'/map/'.$_POST['map']) ;
-		echo '<b>Points inserted into '.$map->getName().'</b>';
+		header('Location: http://'.$_SERVER['HTTP_HOST'].'/project/'.
+               $project->getID()) ;
+
+
 	}
 }
 if (isset($_POST['dl'])) {
+
 	header('Location: http://'.$_SERVER['HTTP_HOST'].'/datapoints.dat') ;
 }
 ?>

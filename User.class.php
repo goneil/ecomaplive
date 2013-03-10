@@ -23,16 +23,18 @@ class User {
 		//if user exists, return false
 		$query = "SELECT * FROM `users` WHERE `username` = '$username'";
 		$user = $this->database->query($query)->fetch_array();
-		if (!empty($user))
+		if (!empty($user)){
 			return false;
+        }
 			
 		//insert user
-		$query = "INSERT INTO `users` VALUES('$username', '" . md5($password) . "', '$name', '$email', '".md5(microtime())."','')";
-		if (!$this->database->query($query)) {
-			return false;
-		}
+		$query = "INSERT INTO `users` VALUES('$username', '" . md5($password) .
+        "', '$name', '$email', '".md5(microtime())."',DEFAULT)";
 		if (isset($this->database->error)) {
 			echo $this->database->error;
+		}
+		if (!$this->database->query($query)) {
+			return false;
 		}
 		$this->login($username, $password);
 		return true;

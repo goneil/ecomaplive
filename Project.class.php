@@ -52,7 +52,7 @@ class Project {
 		$this->admins = $admins;
 		
 		$maps = array();
-		$query = "SELECT * FROM `projmaps` WHERE `project` = '$id'";
+		$query = "SELECT * FROM `maps` WHERE `project` = '$id'";
 		$mapQuery = $this->database->query($query);
 		while ($info = $mapQuery->fetch_array()) {
 			array_push($maps,$info['map']);
@@ -87,7 +87,7 @@ class Project {
 		} else {
 			$private = "1";
 		}
-		$query = "INSERT INTO `project` VALUES('', '$name', '$description', '$blurb', '$private')";
+		$query = "INSERT INTO `project` VALUES(DEFAULT, '$name', '$description', '$blurb', '$private')";
 		$this->database->query($query);
 		$id = $this->database->getConnection()->insert_id;
 		$query = "INSERT INTO `projusers` VALUES('$id', '$admin', '1')";
@@ -156,11 +156,13 @@ class Project {
 	}
 	
 	function addMap(Map $map) {
+        echo 'Project->addmap no longer functional';
 		array_push($this->maps,$map->getID());
-		$id = $this->id;
-		$map = $map->getID();
-		$query = "INSERT INTO `projmaps` VALUES('$id','$map','0')";
-		$this->database->query($query);
+		//$id = $this->id;
+		//$mapID = $map->getID();
+		//$query = "INSERT INTO `maps` VALUES(DEFAULT, '$id','$map','0')";
+        ////TODO this query doesnt do anything
+		//$this->database->query($query);
 	}
 	
 	function edit($name, $desc, $blurb) {

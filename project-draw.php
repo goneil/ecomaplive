@@ -1,4 +1,7 @@
 <?php
+//echo "<br>request[0] is: " . $request[0] . "</br>";
+//echo "<br>request[1] is: " . $request[1] . "</br>";
+//echo "<br>request[2] is: " . $request[2] . "</br>";
 if (isset($request[1])) {
 	$project = new Project($request[1]);
 	if ($request[1] == 'add') {
@@ -29,12 +32,18 @@ if (isset($request[1])) {
 					<?php	
 				} else {
 					echo '<h3>Administrative Functions</h3>';
-					echo '> <a href="http://',$_SERVER['HTTP_HOST'],'/project/',$project->getId(),'/admin/add">Add New Map</a><br />';
-					echo '> <a href="http://',$_SERVER['HTTP_HOST'],'/project/',$project->getId(),'/admin/delete">Delete Project</a><br />';
-					if ($project->getPrivate() == 'Private')
-						echo '> <a href="http://',$_SERVER['HTTP_HOST'],'/project/',$project->getId(),'/admin/setPublic">Set as Public</a><br />';
-					else
-						echo '> <a href="http://',$_SERVER['HTTP_HOST'],'/project/',$project->getId(),'/admin/setPrivate">Set as Private</a><br />';
+
+                    $baseurl = "http://$_SERVER[HTTP_HOST]/project/" .
+                               $project->getId() . "/admin";
+					echo '> <a href="', $baseurl, '/add">Add New Map</a><br />';
+					echo '> <a href="', $baseurl, '/delete">Delete Project</a><br />';
+					if ($project->getPrivate() == 'Private'){
+						echo '> <a href="', $baseurl, '/setPublic">Set as Public</a><br />';
+                    }
+					else{
+						echo '> <a href="', $baseurl, '/setPrivate">Set as Private</a><br />';
+                    }
+					echo '> <a href="http://',$_SERVER['HTTP_HOST'],'/upload/',$project->getid(),'">Upload Points</a><br />';
 				}
 				if (isset($request[3]) && $request[3] == 'users') {
 					if (!isset($request[4])) {
@@ -71,6 +80,7 @@ if (isset($request[1])) {
 				} else {
 					echo '> <a href="http://',$_SERVER['HTTP_HOST'],'/project/',$project->getId(),'/admin/edit">Edit</a><br />';
 				}
+
 			} else {
 				echo '<a href="http://',$_SERVER['HTTP_HOST'],'/project/',$project->getId(),'/admin">Admin Section</a><br /><br />';
 			}
@@ -83,14 +93,13 @@ if (isset($request[1])) {
 		echo '<p style="margin: 0px 20px 20px 20px;">';
 		$maps = $project->getMaps();
 		foreach ($maps as $map) {
-			$m = new Map($map);
-			if ($m->isPrivate()) {
-				if ($project->isUser(new User($userInfo['uid']))) 
-					echo '[<span style="color: gray; margin: 0px auto;"> Upload Points </span>]<span style="margin: 0px 0px 0px 10px;"></span><a class="mapLink" href="http://',$_SERVER['HTTP_HOST'],'/map/',$map,'">',$m->getName(),'</a><br>';
-			} else {
-				echo '[ <a style="color: black;" class="Link" href="http://',$_SERVER['HTTP_HOST'],'/upload/',$map,'">Upload Points</a> ]<a style="margin: 0px 0px 0px 10px;" class="mapLink" href="http://',$_SERVER['HTTP_HOST'],'/map/',$map,'">',$m->getName(),'</a><br>';
-			}
-		}
+            $m = new Map($map);
+            if ($project->isUser(new User($userInfo['uid']))) {
+                //TODO upload points gives you the wrong idea b/c not
+                //clickable nad no explanation why
+                echo '<span style="margin: 0px 0px 0px 10px;"></span><a class="mapLink" href="http://',$_SERVER['HTTP_HOST'],'/map/',$map,'">',$m->getName(),'</a><br>';
+            }
+        }
 		echo '</p>';
 		echo '</div>';
 	}

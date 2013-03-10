@@ -11,15 +11,15 @@
 		if($request[1] == 'error' && isset($request[2])) {
 			$showWarning = true;
 		} else {
-			$map = new Map($request[1]);
-			echo 'Upload to <b>'.$map->getName().'</b> Map<br />';
+			$project = new Project($request[1]);
+			echo 'Upload datapoints to project: <b>'.$project->getName().'</b> <br />';
 		}
 	} else {
-		echo '<b>No Map Selected</b>';
+		echo '<b>No Project Selected</b>';
 	}
 	?>
 	<input type="hidden" name="MAX_FILE_SIZE" value="100000" />
-	<input type="hidden" name="map" value="<?php echo $request[1];?>" />
+	<input type="hidden" name="project" value="<?php echo $request[1];?>" />
 	<?php
 		if($showWarning) {
 			echo '<b>You have attempted to upload beyond the 250 data points limit.</b><br>';

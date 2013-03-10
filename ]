@@ -1,0 +1,72 @@
+<?php
+class Point {
+    private $projectID;
+	private $lat;
+	private $lng;
+	private $range;
+	private $value;
+	private $time;
+    private static $database;
+	
+	function __construct($projectID, $lat, $lng, $range, $value, $time = "") {
+        $this->database = new Database();
+        $this->projectID = $lat;
+		$this->lat = $lat;
+		$this->lng = $lng;
+		$this->range = $range;
+		$this->value = $value;
+		//$time = new DateTime($time);
+		//$this->time = $time->format("Y-m-d H:i:s");
+        $date.timezone =  'America/New_York';
+		$this->time = strtotime($time);
+		if (!$this->time) {
+			$this->time = time();
+		}
+	}
+
+    function exportToDB(){
+		$query = "INSERT INTO `data` VALUES(DEFAULT, '$this->projectID',
+                  '$this->lat', '$this->lng', '$this->range', '$this->value',
+                  '$this->time')";
+		$this->database->query($query);
+    }
+	
+    // TODO function not used
+    // function will also fail
+	function getJSCoords() {
+		return "[$this->lat,$this->lng,$this->range,$this->value,$this->uid,$this->time]";
+	}
+	
+	function getLat() {
+		return $this->lat;
+	}
+	
+	function getLng() {
+		return $this->lng;
+	}
+	
+	function __toString() {
+		return $this->getJSCoords();
+	}
+	
+	function getUser() {	
+		return $this->uid;
+	}
+	
+	function getMap() {
+		return $this->map;
+	}
+	
+	function getRange() {
+		return $this->range;
+	}
+	
+	function getValue() {
+		return $this->value;
+	}
+	
+	function getTime() {
+		return $this->time;
+	}
+}
+?>
