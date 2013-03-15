@@ -48,7 +48,8 @@ CREATE TABLE `maps` (
   `name` varchar(255) NOT NULL,
   `project` int(4) NOT NULL,
   `private` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE (`name`, `project`)
 ) ENGINE=MyISAM AUTO_INCREMENT=65 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

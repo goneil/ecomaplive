@@ -90,13 +90,12 @@ if (isset($request[1])) {
 		
 		echo '<div class="projectContainer">';
 		echo '<h4>',$project->getName(),' Maps</h4>';
+        echo '<p><a id="addMap" href="">New Map</a> <p>';
 		echo '<p style="margin: 0px 20px 20px 20px;">';
 		$maps = $project->getMaps();
 		foreach ($maps as $map) {
-            $m = new Map($map);
+            $m = Map::loadMap($map);
             if ($project->isUser(new User($userInfo['uid']))) {
-                //TODO upload points gives you the wrong idea b/c not
-                //clickable nad no explanation why
                 echo '<span style="margin: 0px 0px 0px 10px;"></span><a class="mapLink" href="http://',$_SERVER['HTTP_HOST'],'/map/',$map,'">',$m->getName(),'</a><br>';
             }
         }

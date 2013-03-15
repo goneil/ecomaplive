@@ -7,12 +7,12 @@
 		if (loggedIn()) {
 			echo '<li><a href="http://'.$_SERVER['HTTP_HOST'].'/project">My Projects</a>';
 			echo '</li>';
-			echo '<li><a href="http://'.$_SERVER['HTTP_HOST'].'/map">Create Map</a>';
+			echo '<li><a href="http://'.$_SERVER['HTTP_HOST'].'/create_map">Create Map</a>';
 			echo '</li>';
 		} else {
 			echo '<li><a href="http://'.$_SERVER['HTTP_HOST'].'/login">Login</a>';
 			echo '</li>';
-			echo '<li><a href="http://'.$_SERVER['HTTP_HOST'].'/demo">Create Map</a>';
+			echo '<li><a href="http://'.$_SERVER['HTTP_HOST'].'/demo">Quick Map</a>';
 			echo '</li>';
 		}
 	?>
