@@ -29,8 +29,9 @@ if (isset($_POST['upload'])) {
             // line 2: range
             // line 3: val
             // line 4: time
-			if ($line[3] > 1) $line[3] = 1;
-			if ($line[3] < 0) $line[3] = 0;
+			if ($line[3] > 1){ $line[3] = 1;}
+			if ($line[3] < 0){ $line[3] = 0;}
+
             //TODO change to project not map
 			$point = new Point($project->getID(), $line[0], $line[1], $line[2], $line[3], $line[4]);
             $point->exportToDB();

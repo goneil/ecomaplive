@@ -6,7 +6,7 @@
 function printMapScript($map,$options = array()) { 
 	$width = 550;
 	$height = 400;
-	if (!$map instanceof Map) $map = new Map($map);
+	if (!$map instanceof Map) $map = Map::loadMap($map);
 	$points = $map->getPoints();
 	//then to pass through Options filters
 	if (isset($options['height'])) $height = $options['height'];

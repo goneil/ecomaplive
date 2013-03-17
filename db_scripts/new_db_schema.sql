@@ -13,7 +13,7 @@ CREATE TABLE `point` (
   `range` double NOT NULL,
   `val` decimal(10,10) NOT NULL,
   `time` int(11) NOT NULL,
-  PRIMARY KEY (`project`, `id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

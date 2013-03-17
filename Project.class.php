@@ -55,7 +55,7 @@ class Project {
 		$query = "SELECT * FROM `maps` WHERE `project` = '$id'";
 		$mapQuery = $this->database->query($query);
 		while ($info = $mapQuery->fetch_array()) {
-			array_push($maps,$info['map']);
+			array_push($maps,$info['id']);
 		}
 		$this->maps = $maps;
 	}

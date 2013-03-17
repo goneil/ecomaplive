@@ -23,16 +23,22 @@ class MapPoints {
             $this->database->query($query);
         }
     }
+    
+    function getPoints(){
+        return $this->point_id_list;
+    }
 
 
 	public static function loadMapPoints($map_id) {
         $database = new Database();
-        $query = "SELECT * FROM `mappoints` WHERE `map` = '$map_id'";
+        $query = "SELECT * FROM `mappoints` WHERE `map_id` = '$map_id'";
         $info = $database->query($query);
+        $point_id_list = array();
         if ($info){
             while($row = $info->fetch_array()){
-                array_push($this->point_id_list, $row['point_id']);
+                array_push($point_id_list, $row['point_id']);
             }
+            return new MapPoints($map_id, $point_id_list);
         } else{
             echo "no mappoints with id: " . $map_id;
         }

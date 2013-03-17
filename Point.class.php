@@ -44,7 +44,7 @@ class Point {
             $info = $info->fetch_array();
             $point = new Point($info['project'], $info['lat'], $info['lng'],
                                $info['range'], $info['val'], $info['time']);
-            $point.setID($info['id']);
+            $point->setID($info['id']);
             return $point;
         } else{
             echo "Point::loadPoint: no points with id " . $id;

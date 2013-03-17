@@ -13,18 +13,32 @@ class Map {
 
 	function construct($name, $project, $isPrivate) {
         $this->database = new Database();
-        if ($this->map_exists($name, $project)){
-            // load map
-            $this->id = $this->id_from_name_project($name, $project)->id;
+        if (($id = $this->map_exists_proj_name($project, $name)) !== false){
+            $this->id = $id;
         }
         $this->isPrivate = $isPrivate;
         $this->name = $name;
         $this->project = $project;
 	}
 
-    function map_exists($name, $project){
-        return (false !== $this->id_from_name_project($name, $project));
-        
+    function map_exists_proj_name($project, $name){
+		$query = "SELECT * FROM `maps` WHERE `project` = $project and `name` = '$name'";
+		$info = $this->database->query($query);
+        if ($info && $tmp_id = $info->fetch_array()){ 
+            return $tmp_id["id"];
+        }
+        else{ return false; }
+    }
+
+
+    function map_exists($id){
+		$query = "SELECT * FROM `maps` WHERE `id` = '$id'";
+		$info = $this->database->query($query)->fetch_array();
+        if ($info){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     function id_from_name_project($name, $project){
@@ -33,10 +47,8 @@ class Map {
 		$info = $this->database->query($query);
         if ($info){
             $row = $info->fetch_array();
-            return $row['id'];
         }
-        return false;
-        
+        return $row['id'];
     }
 
     //TODO make sure correct
@@ -45,13 +57,16 @@ class Map {
                  '$this->project', '$this->isPrivate')";
 		$this->database->query($query);
         //TODO is this how to set id?
-		$this->id = $this->database->getConnection()->insert_id;
+        if (!$this->id){
+		    $this->id = $this->database->getConnection()->insert_id;
+        }
     }
 
 
     /** TODO implement function
       * @returns new Map loaded from the database
       * @params id {int}
+      * returns map with all null values if id not in db
       */
 	static function loadMap($id) {
 		$database = new Database();
@@ -76,6 +91,15 @@ class Map {
 	function isPrivate() {
 		return $this->isPrivate;
 	}
+
+	function getPoints() {
+        $map_points = MapPoints::loadMapPoints($this->id);
+        $point_list = array();
+        foreach($map_points->getPoints() as $point_id){
+            array_push($point_list, Point::loadPoint($point_id));
+        }
+        return $point_list;
+    }
 	
 	function getProject() {
 		return $this->project;

@@ -1,6 +1,6 @@
 <?php
 if (isset($request[1])) {
-	$map = new Map($request[1]);
+	$map = Map::loadMap($request[1]);
 	$options = array();
 	$options['width'] = 525;
 	$options['height'] = 400;

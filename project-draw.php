@@ -2,6 +2,7 @@
 //echo "<br>request[0] is: " . $request[0] . "</br>";
 //echo "<br>request[1] is: " . $request[1] . "</br>";
 //echo "<br>request[2] is: " . $request[2] . "</br>";
+$basepath = "http://" . $_SERVER['HTTP_HOST'];
 if (isset($request[1])) {
 	$project = new Project($request[1]);
 	if ($request[1] == 'add') {
@@ -35,7 +36,7 @@ if (isset($request[1])) {
 
                     $baseurl = "http://$_SERVER[HTTP_HOST]/project/" .
                                $project->getId() . "/admin";
-					echo '> <a href="', $baseurl, '/add">Add New Map</a><br />';
+					echo '> <a href="', $basepath, '/create_map">Add New Map</a><br />';
 					echo '> <a href="', $baseurl, '/delete">Delete Project</a><br />';
 					if ($project->getPrivate() == 'Private'){
 						echo '> <a href="', $baseurl, '/setPublic">Set as Public</a><br />';
@@ -90,7 +91,7 @@ if (isset($request[1])) {
 		
 		echo '<div class="projectContainer">';
 		echo '<h4>',$project->getName(),' Maps</h4>';
-        echo '<p><a id="addMap" href="">New Map</a> <p>';
+        echo '<p><a id="addMap" href="' . $basepath . '/create_map">New Map</a> <p>';
 		echo '<p style="margin: 0px 20px 20px 20px;">';
 		$maps = $project->getMaps();
 		foreach ($maps as $map) {

@@ -1,6 +1,5 @@
-<link rel="stylesheet" type="text/css" href="/images/jquery-ui-1.10.1.custom/css/ui-darkness/jquery-ui-1.10.1.custom.css">
-<link rel="stylesheet" type="text/css"
-href="/images/jquery-ui-1.10.1.custom/css/ui-darkness/jquery-ui-1.10.1.custom.min.css">
+<link rel="stylesheet" type="text/css" href="/images/jquery-ui-1.10.1.custom/css/ui-lightness/jquery-ui-1.10.2.custom.min.css">
+<link rel="stylesheet" type="text/css" href="/images/jquery-ui-1.10.1.custom/css/ui-lightness/jquery-ui-1.10.2.custom.css">
 <script type="text/javascript" src="/images/jquery-ui-1.10.1.custom/js/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="/images/jquery-ui-1.10.1.custom/js/jquery-ui-1.10.1.custom.js"></script>
 <script type="text/javascript" src="/images/jquery-ui-1.10.1.custom/js/jquery-ui-1.10.1.custom.min.js"></script>
@@ -8,8 +7,19 @@ href="/images/jquery-ui-1.10.1.custom/css/ui-darkness/jquery-ui-1.10.1.custom.mi
 <script type="text/javascript" src="/images/create_map.js"></script>
 
 <div class="title">
-    <h2>Create Map</h2>
+    <h2>Create Visualization</h2>
 </div>
+<!--<div class="error">
+    <p>
+        <?php 
+            //if (isset($error_message)){
+                //echo $error_message; 
+            //}
+        ?>
+    </p>
+    <br/>
+</div>
+-->
 
 <form method="post" action="/create_map">
     <div id="select_project">
