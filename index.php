@@ -40,6 +40,7 @@ if (loggedIn()) {
 <head>
     <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST'];?>/images/ecostyle.css" />
 	<script src="http://<?php echo $_SERVER['HTTP_HOST'];?>/images/script.js" type="text/javascript"></script>
+	<script src="/images/jquery-1.9.1.js" type="text/javascript"></script>
 </head>
 <body>
 <div class="all">

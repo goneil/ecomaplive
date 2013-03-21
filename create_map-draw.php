@@ -4,6 +4,10 @@
 <script type="text/javascript" src="/images/jquery-ui-1.10.1.custom/js/jquery-ui-1.10.1.custom.js"></script>
 <script type="text/javascript" src="/images/jquery-ui-1.10.1.custom/js/jquery-ui-1.10.1.custom.min.js"></script>
 <script type="text/javascript" src="/images/jquery-ui-timepicker-addon.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/images/techlab-SmartWizard-5e911ba/styles/smart_wizard.css">
+<script type="text/javascript" src="/images/techlab-SmartWizard-5e911ba/js/jquery.smartWizard-2.0.min.js "></script>
+
 <script type="text/javascript" src="/images/create_map.js"></script>
 
 <div class="title">
@@ -76,4 +80,21 @@
     <div>
         <input name="create_map" value="Submit" type="submit" />
     </div>
+
+<div id="wizard" class="swMain">
+  <ul>
+    <li><a href="#step-1">
+          <label class="stepNumber">1</label>
+          <span class="stepDesc">
+             Step 1<br />
+             <small>Step 1 description</small>
+          </span>
+      </a></li>
+  </ul>
+  <div id="step-1">   
+      <h2 class="StepTitle">Step 1 Content</h2>
+       <!-- step content -->
+  </div>
+</div>
+
 </form>

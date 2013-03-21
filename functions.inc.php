@@ -310,4 +310,32 @@ function filterQuotes($str) {
 	}
 	return $str;
 }
+
+// Reusable functions
+function show_project_list($projs){
+    foreach ($projs as $proj) {
+        $p = new Project($proj);
+        echo '<div class="projectContainer button">';
+            echo '<a class="projectLink" href="http://',$_SERVER['HTTP_HOST'],'/project/',$p->getID(),'">'.$p->getName().'</a><br>';
+            echo '<p style="margin: 0px 10px 0px 10px;">';
+            echo 'Blurb: '.$p->getBlurb().'<br>';
+            echo 'Description: '.$p->getDescription();
+            echo '</p>';
+        echo '</div>';
+    }
+}
+
+// Reusable functions
+function show_map_list($maps){
+    foreach ($maps as $map) {
+        $m = Map::loadMap($map);
+        echo '<div class="mapContainer button">';
+        echo '<a class="mapLink" href="http://',$_SERVER['HTTP_HOST'],'/map/',$map,'">',$m->getName(),'</a><br>';
+        echo "<button class='deleteButton' value='$map'>Delete</button>";
+    echo '</div>';
+    }
+
+}
+
+
 ?>

@@ -16,6 +16,9 @@
 	a.mapLink:link {color: #006400; text-decoration: none; font-weight: bold; font-size: 12pt;}
 	a.mapLink:visited {color: #006400; text-decoration: none; font-weight: bold; font-size: 12pt;}
 	a.mapLink:hover {color: #006400; text-decoration: underline; font-weight: bold; font-size: 12pt;}		
+    a.mapLink{
+        float: left;
+    }
 	
 	a.Link:link {text-decoration: none;}
 	a.Link:visited {text-decoration: none;}
@@ -31,7 +34,10 @@
 
     div.content{padding: 0px 50px 0px 200px;}
 	
-	div.projectContainer{background-color: #FFFACD; padding: 5px 10px 5px 10px; margin: 5px auto; }
+    button.deleteButton{
+        text-align: right;
+        float: right;
+    }
 	
     /*div.content ul{margin-left:160px; margin-right: 50px; margin-top:0px; margin-bottom:0px;}*/
 
@@ -151,6 +157,38 @@ form {
 .error{
     color: red;
 }
+
+.projectContainer{
+    background-color: #FFFACD;
+    border: 1px solid tan;
+    padding: 5px 10px 5px 10px;
+    margin: 5px auto;
+    overflow: auto;
+    width: 100%
+}
+
+
+.mapContainer{
+    background-color: #FFFACD;
+    border: 1px solid tan;
+    padding: 5px 10px 5px 10px;
+    margin: 10px auto; 
+    margin: 5px auto;
+    overflow: auto;
+    width: 80%
+}
+
+.button{
+    border-radius: 5px;
+}
+
+.button:hover{
+    background-color: tan;
+    color: #006400;
+    font-weight: bold;
+}
+
+
 
 /* css for timepicker */
 .ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
