@@ -110,7 +110,8 @@ function printMapScript($map,$options = array()) {
 			break;
 }
 	?>
-	<script type='text/javascript' src='http://<?php echo $_SERVER['HTTP_HOST']; ?>/images/circles.js'></script>
+	<script type='text/javascript' src='http://<?php echo $_SERVER['HTTP_HOST'];
+    ?>/images/js/circles.js'></script>
 	<!--<script type='text/javascript' src='http://www.bdcc.co.uk/Gmaps/BDCCCircle.js'></script>-->
 	<script type="text/javascript">
 	var locations = [<?php
@@ -315,13 +316,11 @@ function filterQuotes($str) {
 function show_project_list($projs){
     foreach ($projs as $proj) {
         $p = new Project($proj);
-        echo '<div class="projectContainer button">';
-            echo '<a class="projectLink" href="http://',$_SERVER['HTTP_HOST'],'/project/',$p->getID(),'">'.$p->getName().'</a><br>';
-            echo '<p style="margin: 0px 10px 0px 10px;">';
-            echo 'Blurb: '.$p->getBlurb().'<br>';
-            echo 'Description: '.$p->getDescription();
-            echo '</p>';
-        echo '</div>';
+            echo "<li class='button project' id='" . $p->getName() . "'>";
+                echo '<a class="projectLink" href="http://',$_SERVER['HTTP_HOST'],'/project/',$p->getID(),'">'.$p->getName().'</a><br>';
+                echo 'Blurb: '.$p->getBlurb().'<br>';
+                echo 'Description: '.$p->getDescription();
+            echo "</li>";
     }
 }
 

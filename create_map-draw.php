@@ -1,14 +1,14 @@
-<link rel="stylesheet" type="text/css" href="/images/jquery-ui-1.10.1.custom/css/ui-lightness/jquery-ui-1.10.2.custom.min.css">
-<link rel="stylesheet" type="text/css" href="/images/jquery-ui-1.10.1.custom/css/ui-lightness/jquery-ui-1.10.2.custom.css">
-<script type="text/javascript" src="/images/jquery-ui-1.10.1.custom/js/jquery-1.9.1.js"></script>
-<script type="text/javascript" src="/images/jquery-ui-1.10.1.custom/js/jquery-ui-1.10.1.custom.js"></script>
-<script type="text/javascript" src="/images/jquery-ui-1.10.1.custom/js/jquery-ui-1.10.1.custom.min.js"></script>
-<script type="text/javascript" src="/images/jquery-ui-timepicker-addon.js"></script>
+<link rel="stylesheet" type="text/css" href="/images/resources/jquery-ui-1.10.2.custom/css/ui-lightness/jquery-ui-1.10.2.custom.min.css">
+<link rel="stylesheet" type="text/css" href="/images/resources/jquery-ui-1.10.2.custom/css/ui-lightness/jquery-ui-1.10.2.custom.css">
+<script type="text/javascript" src="/images/resources/jquery-ui-1.10.2.custom/js/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="/images/resources/jquery-ui-1.10.2.custom/js/jquery-ui-1.10.2.custom.js"></script>
+<script type="text/javascript" src="/images/resources/jquery-ui-1.10.2.custom/js/jquery-ui-1.10.2.custom.min.js"></script>
+<script type="text/javascript" src="/images/resources/jquery-ui-timepicker-addon.js"></script>
 
-<link rel="stylesheet" type="text/css" href="/images/techlab-SmartWizard-5e911ba/styles/smart_wizard.css">
-<script type="text/javascript" src="/images/techlab-SmartWizard-5e911ba/js/jquery.smartWizard-2.0.min.js "></script>
+<link rel="stylesheet" type="text/css" href="/images/resources/techlab-SmartWizard-5e911ba/styles/smart_wizard.css">
+<script type="text/javascript" src="/images/resources/techlab-SmartWizard-5e911ba/js/jquery.smartWizard-2.0.min.js "></script>
 
-<script type="text/javascript" src="/images/create_map.js"></script>
+<script type="text/javascript" src="/images/js/create_map.js"></script>
 
 <div class="title">
     <h2>Create Visualization</h2>
