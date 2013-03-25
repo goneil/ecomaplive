@@ -177,14 +177,27 @@ form {
 
 
 .button{
+}
+
+.list-icon{
     border-radius: 5px;
     border: 1px solid tan;
     margin: 5px;
 }
 
-.projectInfo{
-    float: left;
-    display: block;
+#projectInfo{
+    border-style: solid;
+    border-width: 1px;
+    border-color: grey;
+    padding: 5px;
+}
+
+#deleteProject{
+    padding: 5px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: grey;
+
 }
 
 .spacer{
@@ -220,22 +233,32 @@ form {
     background-color: #FFFACD;
 }
 
+.map{
+    background-color: #FFFACD;
+    height: 40px;
+}
+
+
 #container{
     border-style: solid;
     border-width: 1px;
+    border-color: grey;
+    border-radius: 5px;
     margin-top: 3%;
 
 }
 #container-header{
+    background: lightgrey;
     border-style: solid;
     border-width: 1px;
+    border-color: grey;
     overflow: hidden;
 }
 
 #container-title{
     float:left;
     margin:5px;
-    width: 70%;
+    width: 45%;
     text-align: center;
     font-weight: bold;
     font-size: 14pt;
@@ -246,14 +269,23 @@ form {
     margin:5px;
 }
 
+button{
+    height: 35px;
+}
+
+.header-button{
+    font-size: 10px !important;
+}
+
 .button-container{
-    float:left;
+    float:right;
     margin:5px;
 
 }
 #search-container{
     border-style: solid;
     border-width: 1px;
+    border-color: grey;
     overflow: hidden;
 }
 #search-box{

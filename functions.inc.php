@@ -316,7 +316,7 @@ function filterQuotes($str) {
 function show_project_list($projs){
     foreach ($projs as $proj) {
         $p = new Project($proj);
-            echo "<li class='button project' id='" . $p->getName() . "'>";
+            echo "<li class='list-icon button project' id='" . $p->getName() . "'>";
                 echo '<a class="projectLink" href="http://',$_SERVER['HTTP_HOST'],'/project/',$p->getID(),'">'.$p->getName().'</a><br>';
                 echo 'Blurb: '.$p->getBlurb().'<br>';
                 echo 'Description: '.$p->getDescription();
@@ -327,11 +327,11 @@ function show_project_list($projs){
 // Reusable functions
 function show_map_list($maps){
     foreach ($maps as $map) {
-        $m = Map::loadMap($map);
-        echo '<div class="mapContainer button">';
-        echo '<a class="mapLink" href="http://',$_SERVER['HTTP_HOST'],'/map/',$map,'">',$m->getName(),'</a><br>';
-        echo "<button class='deleteButton' value='$map'>Delete</button>";
-    echo '</div>';
+        $map = Map::loadMap($map);
+
+        echo "<li class='list-icon button map' id='" . $map->getName() . "'>";
+                echo '<a class="mapLink" href="http://',$_SERVER['HTTP_HOST'],'/map/',$map->getID(),'">'.$map->getName().'</a><br>';
+        echo "</li>";
     }
 
 }

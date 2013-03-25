@@ -1,16 +1,47 @@
 $(document).ready(function() {
     $(".button").click(function(){
-        window.location = $(this).find("a").attr("href");
+        if ($(this).find("a").size() > 0){
+            window.location = $(this).find("a").attr("href");
+        }
         return false;
     });
     $("#search-box").liveUpdate("#search-content").focus();
-    $("#add").button({
+    $(":button").button();
+    $("#back-button").button({
         icons:{
-            primary: "ui-icon-locked"
+            primary: "ui-icon-triangle-1-w"
         }
     });
 
+    $("#add").button({
+        icons:{
+            primary: "ui-icon-plusthick"
+        }
+    });
+
+    $("#search-button").button({
+        icons:{
+            primary: "ui-icon-search"
+        }
+    });
+
+    $("#settings").button({
+        icons:{
+            primary: "ui-icon-gear"
+        }
+    });
 });
+
+    var deleteFunc = function(){
+        var form = $('<form>');
+        form.attr('name', 'delete');
+        form.attr('method', 'POST');
+        form.css('display', 'hidden');
+        var submit = $("<input name='delete' type='submit'/>");
+        form.append(submit);
+        submit.click();
+    }
+
 
 jQuery.fn.liveUpdate = function(list){
   list = jQuery(list);
@@ -18,7 +49,6 @@ jQuery.fn.liveUpdate = function(list){
   if ( list.length ) {
     var rows = list.children('li'),
       cache = rows.map(function(){
-        console.log(this);
         return this.id.toLowerCase();
       });
      

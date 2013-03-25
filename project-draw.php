@@ -1,32 +1,54 @@
-<script src="/images/js/project.js" type="text/javascript"></script>
-<div id="container">
-    <div id="container-header">
-        <div id="last">
-            <button>last</button>
-        </div>
-        <div id="container-title">
-            Projects
-        </div>
+<?php
+    $basepath = "http://" . $_SERVER['HTTP_HOST'];
+    
+    $requestString = "";
+    foreach($request as $r){
+        $requestString = $requestString . " " . $r;
+    }
 
-        <div class="button-container">
-            <button id="add">Add Project</button>
-        </div>
-    </div>
-    <div id="container-body">
-        <div id="search-container">
-            <form id="search">
-                <div>
-                    Search:
-                    <input id="search-box" name="search-box" value type="text">
-                </div>
-            </form>
-        </div>
-        <ul id="search-content">
-            <?php
-		            $projs = getUserProjects($userInfo['uid']);
-                    show_project_list($projs);
-            ?>
-        </ul>
+    $requestSize = count($request);
+    if ($requestSize === 1){
+        $title = "Projects";
+        $listProjects = true;
+        $addText = "New Project";
+        $addHref = "$basepath/project/add";
+        $search = true;
+    } else if ($requestSize >= 1){
+        if ($request[1] === "add"){
+        } else{
+            $projectNum = $request[1];
+            $project = new Project($projectNum);
+            if ($request[2] === "settings"){
+                if (isset($_POST['save'])){
+                    $name = $_POST['name'];
+                    $description = $_POST['description'];
+                    $blurb = $_POST['blurb'];
+                    $project->edit($name, $description, $blurb);
+                } else if (isset($_POST['delete'])){
+                    $project->delete();
+                    header("Location: $basepath/project");
+                }
+                $settings = true;
+                $title = $project->getName() . " Settings";
+                $backText = $project->getName();
+                $backHref = "$basepath/project/" . $projectNum;
+                $name = $project->getName();
+                $description = $project->getDescription();
+                $blurb = $project->getBlurb();
+                $users = $project->getUsers();
+            } else{
+                $title = $project->getName();
+                $backText = "Projects";
+                $backHref = "$basepath/project";
+                $listMaps = true;
+                $addText = "New Map";
+                $addHref = "$basepath/create_map";
+                $search = true;
+            }
+            $settingsHref = "$basepath/project/$request[1]/settings";
+            $settingsText = "settings";
+        }
+    }
 
-    </div>
-</div>
+?>
+<?php include("search-template.php");?>
