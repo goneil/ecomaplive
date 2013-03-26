@@ -1,21 +1,4 @@
-
 <script type="text/javascript" src="/images/js/create_map.js"></script>
-
-<div class="title">
-    <h2>Create Visualization</h2>
-</div>
-<!--<div class="error">
-    <p>
-        <?php 
-            //if (isset($error_message)){
-                //echo $error_message; 
-            //}
-        ?>
-    </p>
-    <br/>
-</div>
--->
-
 <form method="post" action="/create_map">
     <div id="select_project">
         Select Project: 
@@ -36,7 +19,11 @@
                                 $proj_name = $database->query($query);
                                 $proj_name = $proj_name->fetch_array();
                                 $proj_name = $proj_name['name'];
-                                echo "<option value='$proj_id'>$proj_name</option>";
+                                if ($proj_id === $current_proj){
+                                    echo "<option selected value='$proj_id'>$proj_name</option>";
+                                } else{
+                                    echo "<option value='$proj_id'>$proj_name</option>";
+                                }
                             }
                         }
                     }
@@ -71,21 +58,5 @@
     <div>
         <input name="create_map" value="Submit" type="submit" />
     </div>
-
-<div id="wizard" class="swMain">
-  <ul>
-    <li><a href="#step-1">
-          <label class="stepNumber">1</label>
-          <span class="stepDesc">
-             Step 1<br />
-             <small>Step 1 description</small>
-          </span>
-      </a></li>
-  </ul>
-  <div id="step-1">   
-      <h2 class="StepTitle">Step 1 Content</h2>
-       <!-- step content -->
-  </div>
-</div>
 
 </form>

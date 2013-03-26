@@ -1,54 +1,49 @@
+<script src="/images/js/project.js" type="text/javascript"></script>
 <?php
-    $basepath = "http://" . $_SERVER['HTTP_HOST'];
-    
-    $requestString = "";
-    foreach($request as $r){
-        $requestString = $requestString . " " . $r;
-    }
+//echo "<br>request[0] is: " . $request[0] . "</br>";
+//echo "<br>request[1] is: " . $request[1] . "</br>";
+//echo "<br>request[2] is: " . $request[2] . "</br>";
+$basepath = "http://" . $_SERVER['HTTP_HOST'];
+if (isset($request[1])) {
+	$project = new Project($request[1]);
+	if ($request[1] == 'add') {
+		echo '<h2>Add a project</h2>';
+		echo '<form method="post">';
+		echo 'Name: <input name="name" /><br />';
+		echo 'Description: <input name="desc" /><br />';
+		echo 'Blurb: <input name="blurb" /><br />';
+		echo '<input type="radio" name="group1" value="private" CHECKED>Private ';
+		echo '<input type="radio" name="group1" value="public">Public<br /><br />';
+		echo '<input name="add" value="Submit" type="submit" />';
+	} else {
+        include("project-header.php"); 
+        echo '<div id="map-header">';
+		echo '<div id="map-title">',$project->getName(),' Maps</div>';
 
-    $requestSize = count($request);
-    if ($requestSize === 1){
-        $title = "Projects";
-        $listProjects = true;
-        $addText = "New Project";
-        $addHref = "$basepath/project/add";
-        $search = true;
-    } else if ($requestSize >= 1){
-        if ($request[1] === "add"){
-        } else{
-            $projectNum = $request[1];
-            $project = new Project($projectNum);
-            if ($request[2] === "settings"){
-                if (isset($_POST['save'])){
-                    $name = $_POST['name'];
-                    $description = $_POST['description'];
-                    $blurb = $_POST['blurb'];
-                    $project->edit($name, $description, $blurb);
-                } else if (isset($_POST['delete'])){
-                    $project->delete();
-                    header("Location: $basepath/project");
-                }
-                $settings = true;
-                $title = $project->getName() . " Settings";
-                $backText = $project->getName();
-                $backHref = "$basepath/project/" . $projectNum;
-                $name = $project->getName();
-                $description = $project->getDescription();
-                $blurb = $project->getBlurb();
-                $users = $project->getUsers();
-            } else{
-                $title = $project->getName();
-                $backText = "Projects";
-                $backHref = "$basepath/project";
-                $listMaps = true;
-                $addText = "New Map";
-                $addHref = "$basepath/create_map";
-                $search = true;
-            }
-            $settingsHref = "$basepath/project/$request[1]/settings";
-            $settingsText = "settings";
-        }
-    }
+        echo '<div id="add-map"><button class="button"><a  href="' . $basepath .
+        '/create_map/' . $project->getID() . '">Add Map</a></button></div>';
+        echo '</div>';
+		$maps = $project->getMaps();
+        show_map_list($maps);
+	}
+} else {
+	echo '<div>';
+	echo '<h2>Your EcoMap Projects</h2>';
+	if (loggedIn()){
+        ?>
+        <div class="projectContainer button">
+            <a class="projectLink" href="http://<?php echo $_SERVER['HTTP_HOST'];?>/project/add/">
+                New Project
+            </a>
+        </div>
+        
+        <?php
 
+		$projs = getUserProjects($userInfo['uid']);
+        show_project_list($projs);
+	} else {
+		echo 'Register an account and create your own projects now!';
+	}
+	echo '</div>';
+}
 ?>
-<?php include("search-template.php");?>

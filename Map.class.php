@@ -75,7 +75,7 @@ class Map {
 		$isPrivate = $info['private'];
 		$name = $info['name'];
 		$project = $info['project'];
-        $map = (new Map($name, $project, $isPrivate, $points));
+        $map = (new Map($name, $project, $isPrivate));
         $map->setID($info['id']);
         return $map;
 	}
@@ -108,5 +108,14 @@ class Map {
 	function getName() {
 		return $this->name;
 	}
+
+    function remove(){
+        echo "removeing map";
+        $map_points = MapPoints::loadMapPoints($this->id);
+        $map_points->remove();
+        $query = "DELETE FROM `maps` WHERE id=".$this->id;
+        echo $query;
+        $results = $this->database->query($query);
+    }
 }
 ?>

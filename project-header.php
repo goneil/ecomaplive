@@ -1,7 +1,17 @@
 <?php	
         echo '<div class="projectContainer">';
         echo "<div class='projectInfo'>";
-		echo "<h2>" . $project->getName() . "</h2>";
+            echo '<div class="project-header">';
+                echo "<div id='project-title'>" . $project->getName() . "</div>";
+                echo '<div id="upload-button">';
+                    echo '<button class="button">';
+                        echo '<a href="http://' . $_SERVER['HTTP_HOST'] .
+                        '/upload/' . $project->getid() . '">Upload Points</a>';
+                    echo '</button>';
+                echo '</div>';
+            echo '</div>';
+
+        echo "<br/><br/><br/>";
 		echo 'Description: ',$project->getDescription(),'<br />';
 		echo 'Blurb: ',$project->getBlurb(),'<br />';
 		echo 'This project is ',$project->getPrivate(),'<br />';
@@ -70,16 +80,9 @@
 		}
         
         echo '</div>';
-        echo '<div class="spacer"/></div>';
 
 ?>
             
-            <div class="button uploadButton">
-                <a href="<?php echo 'http://' . $_SERVER['HTTP_HOST'] . '/upload/' . $project->getid();?>">
-                </a>
-
-                 Upload Points
-            </div>
 <?php
 		echo '</p>';
 		echo '</div>';

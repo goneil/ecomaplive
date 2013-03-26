@@ -1,6 +1,6 @@
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="ecostyle.css" />
+    <link rel="stylesheet" type="text/css" href="images/css/ecostyle.css" />
 </head>
 <body>
 <div class="all">

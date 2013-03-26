@@ -3,7 +3,8 @@
 ?>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="<?php echo $_SERVER['SERVER_HOST'];?>/images/ecostyle.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo
+    $_SERVER['SERVER_HOST'];?>/images/css/ecostyle.css" />
 </head>
 <body>
 <div class="all">

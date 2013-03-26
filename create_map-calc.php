@@ -1,8 +1,6 @@
 <?php
-
-
 date_default_timezone_set('America/New_York');
-    if ($_POST){
+    if ($_POST['create_map']){
         $project_id = $_POST['project_id'];
         $map_name = $_POST['map_name'];
         $start_date = $_POST['start_date'];
@@ -49,12 +47,14 @@ date_default_timezone_set('America/New_York');
                 $map->exportToDB();
                 $map_point = new MapPoints($map->getID(), $point_list);
                 $map_point->exportToDB();
-                $maps_fucking_id = $map->getID();
                 header("Location: /map/" . $map->getID());
             //}
 
         }
         
 
+    } else if ($request[1]){
+        $current_proj = $request[1];
     }
+
 ?>

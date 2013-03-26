@@ -1,51 +1,56 @@
 <?php
-if (isset($request[1])) {
-	$project = new Project($request[1]);
-	if (isset($request[2]) && $request[2] == 'admin') {
-		//plethora of admin options
-		if (isset($request[3]) && $request[3] == 'add') {
-			if (isset($_POST['newMap'])) {
-				$map = new Map();
-				filterQuotes($_POST['name']);
-				filterQuotes($_POST['private']);
-				$map->createNew($project->getID(),$_POST['name'],$_POST['private']);
-				$project->addMap($map);
-			}
-		}
-		if (isset($request[3]) && $request[3] == 'users') {
-			if (isset($request[4]) && isset($_POST['user'])) {
-				if (!isset($_POST['member'])) {
-					$d = new Database();
-					$query = 'DELETE FROM `projusers` WHERE `project` = "' . $project->getId() . '" AND `user` = "' . $request[4] . '"';
-					$d->query($query);
-				} else {
-					if (!$project->isUser(new User($request[4]))) {
-						$project->addUser($request[4]);
-					}
-					if (isset($_POST['admin'])) {
-						$d = new Database();
-						$pid = $project->getId();
-						$uid = $request[4];
-						$query = "UPDATE `projusers` SET `isAdmin` = '1' WHERE `project` =$pid AND `user` =$uid";
-						$d->query($query);
-					} else {
-						$d = new Database();
-						$pid = $project->getId();
-						$uid = $request[4];
-						$query = "UPDATE `projusers` SET `isAdmin` = '0' WHERE `project` =$pid AND `user` =$uid";
-						$d->query($query);
-					}
-				}
-			}
-		}
-		if (isset($request[3]) && $request[3] == 'edit') {
-			if (isset($_POST['edit'])) {
-				$name = filterQuotes($_POST['name']);
-				$desc = filterQuotes($_POST['description']);
-				$blurb = filterQuotes($_POST['blurb']);
-				$project->edit($name, $desc, $blurb);
-			}
-		}
-	}
-}
+    $basepath = "http://" . $_SERVER['HTTP_HOST'];
+    
+    $requestString = "";
+    foreach($request as $r){
+        $requestString = $requestString . " " . $r;
+    }
+
+    $requestSize = count($request);
+    if ($requestSize === 1){
+        $title = "Projects";
+        $listProjects = true;
+        $addText = "New Project";
+        $addHref = "$basepath/project/add";
+        $search = true;
+    } else if ($requestSize >= 1){
+        if ($request[1] === "add"){
+        } else{
+            $projectNum = $request[1];
+            $project = new Project($projectNum);
+            if ($request[2] === "settings"){
+                if (isset($_POST['save'])){
+                    $name = $_POST['name'];
+                    $description = $_POST['description'];
+                    $blurb = $_POST['blurb'];
+                    $project->edit($name, $description, $blurb);
+                } else if (isset($_POST['delete'])){
+                    $project->remove();
+                    header("Location: $basepath/project");
+                }
+                $settings = true;
+                $title = $project->getName() . " Settings";
+                $backText = $project->getName();
+                $backHref = "$basepath/project/" . $projectNum;
+                $name = $project->getName();
+                $description = $project->getDescription();
+                $blurb = $project->getBlurb();
+                $users = $project->getUsers();
+            } else{
+                $title = $project->getName();
+                $backText = "Projects";
+                $backHref = "$basepath/project";
+                $listMaps = true;
+                $addText = "New Map";
+                $addHref = "$basepath/create_map";
+                $addPlotText = "New Plot";
+                $addPlotHref = "$basepath/create_plot";
+                $search = true;
+            }
+            $settingsHref = "$basepath/project/$request[1]/settings";
+            $settingsText = "settings";
+        }
+    }
+
 ?>
+

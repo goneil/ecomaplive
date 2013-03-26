@@ -43,5 +43,10 @@ class MapPoints {
             echo "no mappoints with id: " . $map_id;
         }
 	}
+    function remove(){
+        $query = "DELETE FROM `mappoints` WHERE map_id=".$this->map_id;
+        $results = $this->database->query($query);
+
+    }
 }
 ?>

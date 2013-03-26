@@ -26,18 +26,13 @@
 	
 	p{margin: 0px; padding: 0px;}
 	
-    div.all{width: 800px; margin-left: 10%; margin-right: 10%; overflow: hidden;}
+    div.all{width: 90%; margin-left: 3%; margin-right: 3%; overflow: hidden;}
 
-    div#menu{float: left; width: 157px; height: 100%; padding-bottom: 32767px; margin-bottom: -32767px;}
+    div#menu{float: left; width: 157px; height: 100%; }
 
     div.banner{height: 120px;}
 
     div.content{padding: 0px 50px 0px 200px;}
-	
-    button.deleteButton{
-        text-align: right;
-        float: right;
-    }
 	
     /*div.content ul{margin-left:160px; margin-right: 50px; margin-top:0px; margin-bottom:0px;}*/
 
@@ -168,7 +163,6 @@ form {
 
 .mapContainer{
     background-color: #FFFACD;
-    border: 1px solid tan;
     padding: 5px 10px 5px 10px;
     margin: 10px auto; 
     margin: 5px auto;
@@ -179,10 +173,28 @@ form {
 .button{
 }
 
+#map-header{
+    overflow: hidden;
+}
+
+#map-title{
+    float: left;
+    font-weight: bold;
+    font-size: 16pt;
+    margin-top: 5px;
+}
+
+#map-switch{
+    float: right;
+}
+
+#add-map{
+    float: right;
+}
+
 .list-icon{
-    border-radius: 5px;
-    border: 1px solid tan;
-    margin: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 #projectInfo{
@@ -213,15 +225,6 @@ form {
     float: left;
 }
 
-.uploadButton{
-    text-align: center;
-    display: block;
-    position: relative;
-    left: 70%;
-    padding:5px;
-    width: 100px;
-    height: 100px;
-}
 
 .button:hover{
     background-color: tan;
@@ -248,7 +251,6 @@ form {
 
 }
 #container-header{
-    background: lightgrey;
     border-style: solid;
     border-width: 1px;
     border-color: grey;
@@ -258,7 +260,6 @@ form {
 #container-title{
     float:left;
     margin:5px;
-    width: 45%;
     text-align: center;
     font-weight: bold;
     font-size: 14pt;
@@ -269,12 +270,23 @@ form {
     margin:5px;
 }
 
-button{
-    height: 35px;
-}
-
 .header-button{
     font-size: 10px !important;
+}
+
+#upload-button{
+    float: right;
+}
+
+#project-header{
+    overflow: hidden;
+}
+
+#project-title{
+    width: 30%;
+    font-weight: bold;
+    font-size: 18pt;
+    float: left;
 }
 
 .button-container{
@@ -290,19 +302,23 @@ button{
 }
 #search-box{
     width: 70%;
+    margin-left: 1%;
     margin-top: 2%;
     margin-bottom: 2%;
 }
 #search{
-    float: left;
     width: 75%;
 }
 #search-content{
     padding: 0;
-    margin-left: 2%;
     margin-right: 2%;
     margin-top: 2%;
     margin-bottom: 2%;
+}
+
+#plot{
+    height: 400px;
+    width: 300px;
 }
 
 

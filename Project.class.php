@@ -172,5 +172,23 @@ class Project {
 		$query = 'UPDATE `project` SET `name` = "' . $name . '", `description` = "' . $desc . '", `blurb` = "' . $blurb . '" WHERE `id` = "' . $this->id . '"';
 		$this->database->query($query);
 	}
+
+    function remove(){
+        foreach($this->maps as $mapID){
+            $map = Map::loadMap($mapID);
+            $map->remove();
+        }
+        $query = "SELECT id from point where project = $this->id";
+        $results = $this->database->query($query);
+        while (($row = $results->fetch_array())){
+            $point = Point::loadPoint($row['id']);
+            $point->remove();
+        }
+        $query = "DELETE FROM `project` WHERE id=".$this->id;
+        $results = $this->database->query($query);
+        $query = "DELETE FROM `projusers` WHERE project=".$this->id;
+        $results = $this->database->query($query);
+    }
+
 }
 ?>

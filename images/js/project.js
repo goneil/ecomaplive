@@ -5,31 +5,6 @@ $(document).ready(function() {
         }
         return false;
     });
-    $("#search-box").liveUpdate("#search-content").focus();
-    $(":button").button();
-    $("#back-button").button({
-        icons:{
-            primary: "ui-icon-triangle-1-w"
-        }
-    });
-
-    $("#add").button({
-        icons:{
-            primary: "ui-icon-plusthick"
-        }
-    });
-
-    $("#search-button").button({
-        icons:{
-            primary: "ui-icon-search"
-        }
-    });
-
-    $("#settings").button({
-        icons:{
-            primary: "ui-icon-gear"
-        }
-    });
 });
 
     var deleteFunc = function(){
@@ -38,6 +13,29 @@ $(document).ready(function() {
         form.attr('method', 'POST');
         form.css('display', 'hidden');
         var submit = $("<input name='delete' type='submit'/>");
+        form.append(submit);
+        submit.click();
+    }
+
+    var addMap = function(){
+        var form = $('<form>');
+        form.attr('name', 'delete');
+        form.attr('method', 'GET');
+        form.css('display', 'hidden');
+        var submit = $("<input name='addMap' type='submit'/>");
+        var backHref = $("#back").text();
+        var backHrefInput = $("<input name='backHref' type='text'/>");
+        backHrefInput.attr("value", backHref);
+        form.append(submit);
+        submit.click();
+    }
+
+    var addPlot = function(){
+        var form = $('<form>');
+        form.attr('name', 'delete');
+        form.attr('method', 'GET');
+        form.css('display', 'hidden');
+        var submit = $("<input name='addPlot' type='submit'/>");
         form.append(submit);
         submit.click();
     }

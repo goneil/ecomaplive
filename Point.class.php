@@ -59,7 +59,7 @@ class Point {
     // TODO function not used
     // function will also fail
 	function getJSCoords() {
-		return "[$this->lat,$this->lng,$this->range,$this->value,$this->uid,$this->time]";
+		return "[$this->lat,$this->lng,$this->range,$this->value,$this->id,$this->time]";
 	}
 	
 	function getLat() {
@@ -75,7 +75,7 @@ class Point {
 	}
 	
 	function getUser() {	
-		return $this->uid;
+		return $this->id;
 	}
 	
 	function getMap() {
@@ -93,5 +93,10 @@ class Point {
 	function getTime() {
 		return $this->time;
 	}
+    function remove(){
+        $database = new Database();
+        $query = "DELETE FROM `point` WHERE id=".$this->id;
+        $results = $database->query($query);
+    }
 }
 ?>
