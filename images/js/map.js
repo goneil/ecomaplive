@@ -9,7 +9,10 @@ $(document).ready(function() {
     
     var plotValues = []
     for (var i = 0; i < jsPoints.length; i ++){
-        var x = jsPoints[i][5];
+        //var d = new Date(jsPoints[i][5] * 1000);
+        //var x = '' + d.getFullYear() + '-0' + d.getMonth() + '-' + d.getDate();
+        //x += ' ' + d.getHours() + ":" + d.getMinutes();
+        var x = jsPoints[i][5] * 1000;
         var y = jsPoints[i][3]
         console.log("(" + x + ", " + y + ")");
         plotValues.push([x, y]);

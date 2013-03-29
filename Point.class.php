@@ -30,6 +30,7 @@ class Point {
 		$query = "INSERT INTO `point` VALUES(DEFAULT, '$this->projectID',
                   '$this->lat', '$this->lng', '$this->range', '$this->value',
                   $this->time)";
+        echo "$query <br/>";
 		$this->database->query($query);
 		$this->id = $this->database->getConnection()->insert_id;
     }

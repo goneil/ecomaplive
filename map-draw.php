@@ -26,7 +26,7 @@ if (!isset($request[1])) {
     echo '</div>';
 }
 echo '<div id="map-screen">';
-printMapScript($map,$options);
+//printMapScript($map,$options);
 echo '</div>';
 echo '<div id="plot-screen">';
 printPlotScript($map, $options);

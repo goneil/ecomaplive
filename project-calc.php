@@ -19,7 +19,7 @@ if (isset($request[1])) {
 		}
 		if (isset($request[3]) && $request[3] == 'delete') {
 			if (loggedIn() && $project->isAdmin($userInfo['uid'])) {
-				deleteProject($project->getID());
+                $project->remove();
 				header('Location: http://'.$_SERVER['HTTP_HOST'].'/project') ;
 			} else {
 				echo 'Not logged-in or user is not an admin of project';

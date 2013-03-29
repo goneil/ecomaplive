@@ -16,6 +16,7 @@ if (isset($_POST['upload'])) {
 		if (count($file[$i]) != 6) {
 			//throw error
 		}
+
 		$file[$i][4] .= ' ' . $file[$i][5];
 	}
 	if(count($file) > $max) {
