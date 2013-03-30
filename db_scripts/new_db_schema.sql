@@ -12,7 +12,7 @@ CREATE TABLE `point` (
   `lng` double(20,10) NOT NULL,
   `range` double NOT NULL,
   `val` decimal(10,10) NOT NULL,
-  `time` int(11) NOT NULL,
+  `time` bigint NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;

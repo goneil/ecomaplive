@@ -16,7 +16,7 @@ date_default_timezone_set('America/New_York');
             $query = $query . " and time > $start_time";
         }
         if ($end_date != ""){
-            $end_time = strtotime($end_time) * 1000;
+            $end_time = strtotime($end_date) * 1000;
             $query = $query . " and time < $end_time";
         }
         if ($lat != "" && $lng != ""){

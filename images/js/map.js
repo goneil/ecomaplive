@@ -13,7 +13,7 @@ $(document).ready(function() {
     
     var plotValues = []
     for (var i = 0; i < jsPoints.length; i ++){
-        var x = jsPoints[i][5] * 1000;
+        var x = jsPoints[i][5];
         var y = jsPoints[i][3]
         plotValues.push([x, y]);
     }
