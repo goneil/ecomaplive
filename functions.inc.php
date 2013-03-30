@@ -431,6 +431,9 @@ function printPlotScript($map,$options = array()) {
     echo '<link rel="stylesheet" type="text/css" href="/images/resources/jqplot/jquery.jqplot.css" />';
     echo '<script type="text/javascript" src="/images/resources/jqplot/plugins/jqplot.canvasTextRenderer.min.js"></script>';
     echo '<script type="text/javascript" src="/images/resources/jqplot/plugins/jqplot.canvasAxisLabelRenderer.min.js"></script>';
+    echo '<script type="text/javascript" language="javascript" src="/images/resources/jqplot/plugins/jqplot.dateAxisRenderer.js"></script>';
+    echo '<script type="text/javascript" language="javascript" src="/images/resources/jqplot/plugins/jqplot.canvasTextRenderer.js"></script>';
+    echo '<script type="text/javascript" language="javascript" src="/images/resources/jqplot/plugins/jqplot.canvasAxisTickRenderer.js"></script>';
 
     echo "<script language='JavaScript'>\n"; 
     echo "var jsPoints = new Array();\n"; 

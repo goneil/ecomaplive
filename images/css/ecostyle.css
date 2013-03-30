@@ -26,7 +26,7 @@
 	
 	p{margin: 0px; padding: 0px;}
 	
-    div.all{width: 90%; margin-left: 3%; margin-right: 3%; overflow: hidden;}
+    div.all{width: 100%; margin-left: 3%; margin-right: 3%; overflow: hidden;}
 
     div#menu{float: left; width: 157px; height: 100%; }
 
@@ -161,15 +161,6 @@ form {
     width: 100%;
 }
 
-.mapContainer{
-    background-color: #FFFACD;
-    padding: 5px 10px 5px 10px;
-    margin: 10px auto; 
-    margin: 5px auto;
-    overflow: auto;
-}
-
-
 .button{
 }
 
@@ -184,6 +175,16 @@ form {
     margin-top: 5px;
 }
 
+#plot-title{
+    float: left;
+    font-weight: bold;
+    font-size: 16pt;
+    margin-top: 5px;
+}
+
+
+
+
 #map-switch{
     float: right;
 }
@@ -195,6 +196,12 @@ form {
 .list-icon{
     margin-top: 10px;
     margin-bottom: 10px;
+    list-style-type: none;
+    background-color: #FFFACD;
+    padding: 5px 10px 5px 10px;
+    overflow: auto;
+    width: 100%;
+
 }
 
 #projectInfo{
@@ -318,12 +325,7 @@ form {
 
 #plot{
     height: 400px;
-    width: 300px;
 }
-
-
-
-
 
 /* css for timepicker */
 .ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }

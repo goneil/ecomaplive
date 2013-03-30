@@ -1,4 +1,8 @@
 $(document).ready(function() {
+
+    $.jqplot.config.enablePlutings = true;
+    $.jsDate.config.defaultCentury = 2000;
+
     // jsPoints is array of arrays
     // [0] : lat        can ignore
     // [1] : lng        can ignore
@@ -9,27 +13,27 @@ $(document).ready(function() {
     
     var plotValues = []
     for (var i = 0; i < jsPoints.length; i ++){
-        //var d = new Date(jsPoints[i][5] * 1000);
-        //var x = '' + d.getFullYear() + '-0' + d.getMonth() + '-' + d.getDate();
-        //x += ' ' + d.getHours() + ":" + d.getMinutes();
         var x = jsPoints[i][5] * 1000;
         var y = jsPoints[i][3]
-        console.log("(" + x + ", " + y + ")");
         plotValues.push([x, y]);
     }
 
-    $.jqplot('plot', [plotValues], {title: 'The Dependence of Value on Time',
-                                  series: [{color: '#5FAB78'}]
-                                 }
-    );
+    $.jqplot('plot', [plotValues], {
+        title: "The Dependence of Value on Time",
+        axes: {
+            xaxis: {
+                renderer: $.jqplot.DateAxisRenderer,
+                tickRenderer: $.jqplot.CanvasAxisTickRenderer,
+                tickOptions: {
+                    formatString: '%m-%d-%Y %H:%M',
+                    angle: -60
+                }
+            },
+        }
+    });
 
-    console.log(plotValues);
-    //$.jqplot('plot',  [[[1, 2],[3,5.12],[5,13.1],[7,33.6],[9,85.9],[11,219.9]]],
-    //{ title:'Exponential Line',
-      //axes:{yaxis:{min:-10, max:240}},
-        //series:[{color:'#5FAB78'}]
-        //});
     $("#plot-screen").hide();
+    $("#plot-title").hide();
 
     
     $("#map-switch").click(function(){
@@ -38,13 +42,17 @@ $(document).ready(function() {
             // Also should show plot
             // could do this by hiding map and showing plot
             $("#map-screen").hide();
+            $("#map-title").hide();
             $("#plot-screen").show();
+            $("#plot-title").show();
         } else{
             $(this).button('option', 'label', 'Show Plot');
             // Also should show map
             // could do this by hiding plot and showing map
             $("#plot-screen").hide();
+            $("#plot-title").hide();
             $("#map-screen").show();
+            $("#map-title").show();
         }
     });
 });

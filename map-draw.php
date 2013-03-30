@@ -21,12 +21,13 @@ if (!isset($request[1])) {
 <?php 
 } else {
     echo '<div id="map-header">';
-	echo '<div id="map-title">' .$map->getName().' Map</div>';
+	echo '<div id="map-title">Map: ' .$map->getName().'</div>';
+	echo '<div id="plot-title" style="display: none">Plot: ' .$map->getName().'</div>';
     echo '<button id="map-switch">Show Plot</button>';
     echo '</div>';
 }
 echo '<div id="map-screen">';
-//printMapScript($map,$options);
+printMapScript($map,$options);
 echo '</div>';
 echo '<div id="plot-screen">';
 printPlotScript($map, $options);
