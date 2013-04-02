@@ -1,4 +1,6 @@
 $(document).ready(function() {
-    $(".datepicker").datetimepicker();
-    $("#wizard").smartWizard();
+    $(".datepicker").datetimepicker({
+        controlType: 'select'
+    });
+    //$("#wizard").smartWizard();
 });

@@ -20,8 +20,10 @@ if (isset($request[1])) {
         echo '<div id="map-header">';
 		echo '<div id="map-title">',$project->getName(),' Maps</div>';
 
-        echo '<div id="add-map"><button class="button"><a  href="' . $basepath .
-        '/create_map/' . $project->getID() . '">Add Map</a></button></div>';
+		if (loggedIn() && $project->isAdmin($userInfo['uid'])) {
+            echo '<div id="add-map"><button class="button"><a  href="' . $basepath .
+            '/create_map/' . $project->getID() . '">Add Map</a></button></div>';
+        }
         echo '</div>';
 		$maps = $project->getMaps();
         show_map_list($maps);

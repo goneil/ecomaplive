@@ -3,12 +3,14 @@
         echo "<div class='projectInfo'>";
             echo '<div class="project-header">';
                 echo "<div id='project-title'>" . $project->getName() . "</div>";
-                echo '<div id="upload-button">';
-                    echo '<button class="button">';
-                        echo '<a href="http://' . $_SERVER['HTTP_HOST'] .
-                        '/upload/' . $project->getid() . '">Upload Points</a>';
-                    echo '</button>';
-                echo '</div>';
+		        if (loggedIn() && $project->isAdmin($userInfo['uid'])) {
+                    echo '<div id="upload-button">';
+                        echo '<button class="button">';
+                            echo '<a href="http://' . $_SERVER['HTTP_HOST'] .
+                            '/upload/' . $project->getid() . '">Upload Points</a>';
+                        echo '</button>';
+                    echo '</div>';
+                }
             echo '</div>';
 
         echo "<br/><br/><br/>";

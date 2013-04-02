@@ -33,23 +33,25 @@
     </div>
     <div>
         <div class="input_title">
-            Map Title: <input name="map_name" />
+            <input placeholder="Map Title" name="map_name" />
         </div>
     </div>
     <div id="dates">
-        <div class="input_title">Select Data by Time:</div>
+        <div class="input_title">Select Data by Time (optional):</div>
         <div id="date_input">
-            <p>Start: <input type="text" class="datepicker" id='start_date' name='start_date'/></p>
-            <p>End: <input type="text" class="datepicker" id='end_date' name='end_date'/></p>
+            <input placeholder="Start Date" type="text" class="datepicker" id='start_date' name='start_date'/>
+            <input placeholder="End Date" type="text" class="datepicker" id='end_date' name='end_date'/>
         </div>
     </div>
     <div id="location">
+        <!--
         <div class="input_title">Select Data by GPS Location:</div>
         <div id="location_input">
             <p>Latitude: <input type="text" name="lat"/></p>
             <p>Longitude: <input type="text" name="lng"/></p>
             <p>Radius (km): <input type="text" name="radius"/></p>
         </div>
+        -->
     </div>
     <div id="isPrivate_div">
         <input type="radio" name="isPrivate" value="1" checked/>Private

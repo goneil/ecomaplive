@@ -47,19 +47,4 @@ CREATE TABLE `mappoints` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
-
---
--- Table structure for table `projusers`
---
-
-DROP TABLE IF EXISTS `projusers`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `projusers` (
-  `project` int(4) NOT NULL,
-  `user` int(4) NOT NULL,
-  `isAdmin` int(4) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
 DROP TABLE IF EXISTS `view_projects`;
