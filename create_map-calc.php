@@ -5,22 +5,31 @@ date_default_timezone_set('America/New_York');
         $map_name = $_POST['map_name'];
         $start_date = $_POST['start_date'];
         $end_date = $_POST['end_date'];
-        $lat = $_POST['lat'];
-        $lng = $_POST['lng'];
-        $radius = $_POST['radius'];
+        $min_lat = $_POST['min_lat'];
+        $max_lat = $_POST['max_lat'];
+        $min_lng = $_POST['min_lng'];
+        $max_lng = $_POST['max_lng'];
         $isPrivate = $_POST['isPrivate'];
-        //$mapPoints = new MapPoint(
         $query = "SELECT id FROM point WHERE project = $project_id";
         if ($start_date != ""){
             $start_time = strtotime($start_date) * 1000;
-            $query = $query . " and time > $start_time";
+            $query = $query . " and time >= $start_time";
         }
         if ($end_date != ""){
             $end_time = strtotime($end_date) * 1000;
-            $query = $query . " and time < $end_time";
+            $query = $query . " and time <= $end_time";
         }
-        if ($lat != "" && $lng != ""){
-            //TODO
+        if ($min_lat){
+            $query = $query . " and lat >= $min_lat";
+        }
+        if ($max_lat){
+            $query = $query . " and lat <= $max_lat";
+        }
+        if ($min_lng){
+            $query = $query . " and lng >= $min_lng";
+        }
+        if ($max_lng){
+            $query = $query . " and lng <= $max_lng";
         }
 
         $database = new Database();

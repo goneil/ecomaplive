@@ -23,7 +23,7 @@ if (isset($_POST['demo'])) {
 	for ($i = 0; $i < count($lat); $i++) {
 		if ($value[$i] > 1) $value[$i] = 1;
 		if ($value[$i] < 0) $value[$i] = 0;
-		$point = new Point($lat[$i], $lng[$i], 0, $userInfo['uid'], $radius[$i], $value[$i]);
+		$point = new Point(0, $lat[$i], $lng[$i], $radius[$i], $value[$i]);
 		array_push($_SESSION['points'], $point);
 	}
 }

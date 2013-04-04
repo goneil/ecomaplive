@@ -12,12 +12,12 @@ if (isset($_POST['upload'])) {
 	$filename = $_FILES['file']['tmp_name'];
 	$file = file($filename);
 	for ($i = 0; $i < count($file); $i++) {
-		$file[$i] = explode(' ',$file[$i]);
-		if (count($file[$i]) != 6) {
-			//throw error
-		}
+		//$file[$i] = explode(' ',$file[$i]);
+        $file[$i] = trim($file[$i]);
+		$file[$i] = preg_split('/\s+/',$file[$i]);
 
-		$file[$i][4] .= ' ' . $file[$i][5];
+        // was probably for non unix timestamp
+		//$file[$i][4] .= ' ' . $file[$i][5];
 	}
 	if(count($file) > $max) {
         //echo "count > max";

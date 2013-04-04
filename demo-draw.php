@@ -3,6 +3,7 @@
 <div style="padding: 0px 0px 25px 10px;">
 <?php
 printMapScript(0,array('demo'=>true, 'width'=>500));
+update_map($_SESSION['points']);
 ?>
 <form method="post">
 	Latitude: <input name='lat[]' /> Longitude: <input name='lng[]' /><br />

@@ -44,14 +44,17 @@
         </div>
     </div>
     <div id="location">
-        <!--
-        <div class="input_title">Select Data by GPS Location:</div>
+        <div class="input_title">Select Data by GPS Location (optional):</div>
         <div id="location_input">
-            <p>Latitude: <input type="text" name="lat"/></p>
-            <p>Longitude: <input type="text" name="lng"/></p>
-            <p>Radius (km): <input type="text" name="radius"/></p>
+            <div>
+                <input placeholder="Min Latitude" type="text" name="min_lat"/>
+                <input placeholder="Max Latitude" type="text" name="max_lat"/>
+            </div>
+            <div>
+                <input placeholder="Min Longitude"  type="text" name="min_lng"/>
+                <input placeholder="Max Longitude"  type="text" name="max_lng"/>
+            </div>
         </div>
-        -->
     </div>
     <div id="isPrivate_div">
         <input type="radio" name="isPrivate" value="1" checked/>Private

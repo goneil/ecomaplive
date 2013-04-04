@@ -18,21 +18,13 @@ class Point {
 		$this->value = $value;
 		//$time = new DateTime($time);
 		//$this->time = $time->format("Y-m-d H:i:s");
-        date_default_timezone_set('America/Cambridge_bay');
-        $timezone = date_default_timezone_get();
-		$this->time = strtotime($timezone, $time);
-		if (!$this->time) {
-			$this->time = time();
-		}
+        $this->time = $time;
 	}
 
     function exportToDB(){
 		$query = "INSERT INTO `point` VALUES(DEFAULT, '$this->projectID',
                   '$this->lat', '$this->lng', '$this->range', '$this->value',
                   $this->time)";
-        echo $query;
-        echo "<br/>";
-        echo "$query <br/>";
 		$this->database->query($query);
 		$this->id = $this->database->getConnection()->insert_id;
     }

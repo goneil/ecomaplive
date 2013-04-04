@@ -98,101 +98,61 @@ function printMapScript($map,$options = array()) {
 	}
 	
 	//uhh, different api keys per host
-	switch ($_SERVER['HTTP_HOST']) {
-		case 'ecomaplive.com': case 'www.ecomaplive.com':
-			echo '<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAA5n2t78oxb_-eRFDjPSn8ARRLXWBrQmFTAU2DsiFqArp7zTGUmRQht9dFGDHkLb_EYeooYdgkB7qo7A" type="text/javascript"></script>' . "\n";
-			break;
-		case 'localhost': case 'localhost:8080':
-			echo '<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAA5n2t78oxb_-eRFDjPSn8ART2yXp_ZAY8_ufC3CFXhHIE1NvwkxQDPIiQQLyyTPpXdtPYkVcuORV1jg" type="text/javascript"></script>' . "\n";
-			break;
-		case 'jchiu.no-ip.org':
-			echo '<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAA5n2t78oxb_-eRFDjPSn8ART7CEX8X51e8wWa1QjNIyfbtUMqWRS3SXhtqwouROb1LhXQrdDMT-HRDw" type="text/javascript"></script>' . "\n";
-			break;
-}
+	//switch ($_SERVER['HTTP_HOST']) {
+		//case 'ecomaplive.com': case 'www.ecomaplive.com':
+			//echo '<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAA5n2t78oxb_-eRFDjPSn8ARRLXWBrQmFTAU2DsiFqArp7zTGUmRQht9dFGDHkLb_EYeooYdgkB7qo7A" type="text/javascript"></script>' . "\n";
+			//break;
+		//case 'localhost': case 'localhost:8080':
+			//echo '<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAA5n2t78oxb_-eRFDjPSn8ART2yXp_ZAY8_ufC3CFXhHIE1NvwkxQDPIiQQLyyTPpXdtPYkVcuORV1jg" type="text/javascript"></script>' . "\n";
+			//break;
+		//case 'jchiu.no-ip.org':
+			//echo '<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAA5n2t78oxb_-eRFDjPSn8ART7CEX8X51e8wWa1QjNIyfbtUMqWRS3SXhtqwouROb1LhXQrdDMT-HRDw" type="text/javascript"></script>' . "\n";
+			//break;
+//}
 
 	?>
-	<script type='text/javascript' src='http://<?php echo $_SERVER['HTTP_HOST'];
-    ?>/images/js/circles.js'></script>
+	<!--<script type='text/javascript' src='/images/js/circles.js'></script>-->
 	<!--<script type='text/javascript' src='http://www.bdcc.co.uk/Gmaps/BDCCCircle.js'></script>-->
 	<script type="text/javascript">
-	var locations = [<?php
-		foreach ($points as $point) echo $point,",";
-	?>]
-	var map;
-	
-	<?php /*
-	function drawCircle(map, center, numPoints, radius, value) {
-        poly = []; 
-        var lat = center.lat();
-        var lng = center.lng();
-        var d2r = Math.PI/180;                // degrees to radians
-        var r2d = 180/Math.PI;                // radians to degrees
-        var Clat = (radius/3963/1600) * r2d;      //  using 3963 as earth's radius
-        var Clng = Clat/Math.cos(lat*d2r);
-        
-        //Add each point in the circle
-        for (var i = 0 ; i < numPoints ; i++) {
-            var theta = Math.PI * (i / (numPoints / 2));
-            Cx = lng + (Clng * Math.cos(theta));
-            Cy = lat + (Clat * Math.sin(theta));
-            poly.push(new GLatLng(Cy,Cx));
-        }
-
-        
-        //Add the first point to complete the circle
-        poly.push(poly[0]);
-
-        //Create a new circle
-		// Using GPolygon(points,  strokeColor?,  strokeWeight?,  strokeOpacity?,  fillColor?,  fillOpacity?)
-        circle = new GPolygon(poly,'#FF0000', 1, 0, '#FF0000', value);
-        
-        map.addOverlay(circle);
-    }*/ ?>
-	
-	function d2h(d) {
-		hex = d.toString(16);
-		if (d < 10) hex = "0" + hex;
-		return hex;
-	}
-	
-	function initialize() {
-		//Creates the map
-		map = new GMap2(document.getElementById("map"),{mapTypes:[G_NORMAL_MAP,G_HYBRID_MAP, G_SATELLITE_MAP, G_PHYSICAL_MAP]});
-		//Finds the zoom level to show all points
+        var locations = [<?php
+            foreach ($points as $point) echo $point,",";
+        ?>]
 		<?php
-		if ($minLat==0 || $minLng==0 || $maxLat==0 || $maxLng==0)
-			echo 'var bounds = new GLatLngBounds(new GLatLng(42.358016,-71.093291), new GLatLng(42.362646,-71.086961));';
-		else
-			echo 'var bounds = new GLatLngBounds(new GLatLng('.$minLat.','.$minLng.'), new GLatLng('.$maxLat.','.$maxLng.'));';
+		if ($minLat==0 || $minLng==0 || $maxLat==0 || $maxLng==0){
+			echo "var minLatLng = new google.maps.LatLng(42.358016,-71.093291);";
+			echo "var maxLatLng = new google.maps.LatLng(42.358016,-71.093291);";
+        } else{
+            echo "var minLatLng = new google.maps.LatLng($minLat, $minLng);";
+			echo "var maxLatLng = new google.maps.LatLng($maxLat,$maxLng);";
+        }
 		?>
-		var zoom = map.getBoundsZoomLevel(bounds)-1;
-		//Repositions to center of all points
-		map.setCenter(bounds.getCenter(), zoom);
-		map.enableContinuousZoom();
-		map.enableScrollWheelZoom();
-		//add gui stuff
-		map.addControl(new GLargeMapControl());
-		map.addControl(new GMapTypeControl());
-		map.addControl(new GScaleControl());
-		
 		var max = <?php echo $max; ?>;
-		//var min = <?php echo $min; ?>;
-		var min = 0;
-		var colors = "";
-		//plot all the points
-		for (i = 0;i < locations.length; i++) {
-			//drawCircle(map, new GLatLng(locations[i][0],locations[i][1]), 360, locations[i][2], locations[i][3]);
-			var value = parseInt((locations[i][3])/((max+1))*255);
-			var color = "#" + d2h(value) + "00" + d2h(255-value);
-			colors = colors + " " + color;
-			map.addOverlay(new BDCCCircle(new GLatLng(locations[i][0],locations[i][1]), locations[i][2]/1600,color,0.00000001,0.0000001,true,color,new Array(0.001,value)));
-		}
-		//document.write(colors);
-	}
-	window.onload = initialize;
 	</script>
+	<!--<script type='text/javascript' src='/images/js/print_map_screen.js'></script>-->
+
 	<div id="map" style="z-index: 0; width: <?php echo $width;?>px; height: <?php echo $height;?>px;"></div>
+	<div id="slideshow" style="z-index: 0; width: <?php echo $width;?>px;">
+        <div id="play"></div>
+        <div id="pause"></div>
+        <div id="slider"></div>
+        <div>Amount: <input id="amount"/><div>
+    </div>
+	<script type='text/javascript' src='/images/js/print_map_screen_trial.js'></script>
 <?php 
+}
+
+function update_map($points){
+    ?>
+	<script type="text/javascript">
+        google.maps.event.addDomListener(window, 'load', function(){
+            var locations = [<?php
+                foreach ($points as $point) echo $point,",";
+            ?>]
+            // javascript call
+            update_map(locations);
+        });
+    </script>
+    <?php
 }
 
 function getProjectList() {
