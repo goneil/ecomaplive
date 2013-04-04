@@ -61,23 +61,20 @@ var update_map = function(locations, minLatLng, maxLatLng){
         mapPoints.push(circle);
     }
 
-    var animate = true;
-    if (animate){
-        var minTime = Math.min.apply(Math, mapPoints.map(function(v){return v.time;}));
-        var maxTime = Math.max.apply(Math, mapPoints.map(function(v){return v.time;}));
-        console.log(minTime);
-        console.log(maxTime);
-        var timeStep = (maxTime - minTime)/10.0;
-        console.log(timeStep);
+    var minTime = Math.min.apply(Math, mapPoints.map(function(v){return v.time;}));
+    var maxTime = Math.max.apply(Math, mapPoints.map(function(v){return v.time;}));
+
+    if (maxTime > minTime){
+        var timeStep = (maxTime - minTime)/5;
 
         $("#play").button({icons: {primary:"ui-icon-play"}});
         $("#pause").button({icons: {primary:"ui-icon-pause"}});
+        $("#slideshow").append('<div>Time Range: <input id="amount"/><div>');
         $("#slider").slider({
             range: true,
             values: [minTime, maxTime],
             min: minTime,
             max: maxTime,
-            step:timeStep,
             create:function(){
                 $("#amount").val(minTime + " - " + maxTime);
             },
