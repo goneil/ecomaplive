@@ -1,7 +1,7 @@
 <script type="text/javascript" src="/images/js/create_map.js"></script>
 <form method="post" action="/create_map">
     <div id="select_project">
-        Select Project: 
+        Project: 
         <select name="project_id">
             <?php 
                 if (loggedIn()){
@@ -37,14 +37,14 @@
         </div>
     </div>
     <div id="dates">
-        <div class="input_title">Select Data by Time (optional):</div>
+        <div class="input_title">Filter Data by Time (optional):</div>
         <div id="date_input">
             <input placeholder="Start Date" type="text" class="datepicker" id='start_date' name='start_date'/>
             <input placeholder="End Date" type="text" class="datepicker" id='end_date' name='end_date'/>
         </div>
     </div>
     <div id="location">
-        <div class="input_title">Select Data by GPS Location (optional):</div>
+        <div class="input_title">Filter Data by GPS Location (optional):</div>
         <div id="location_input">
             <div>
                 <input placeholder="Min Latitude" type="text" name="min_lat"/>

@@ -48,7 +48,7 @@ if (loggedIn()) {
     <script type="text/javascript" src="/images/resources/jquery-ui-1.10.2.custom/js/jquery-ui-1.10.2.custom.min.js"></script>
     <script type="text/javascript" src="/images/resources/jquery-ui-timepicker-addon.js"></script>
     <script type="text/javascript"
-          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCtAl9vuAhzcuv2jv83KUOYvb6bcLYvEs&sensor=true">
+          src="https://maps.googleapis.com/maps/api/js?libraries=visualization&key=AIzaSyBCtAl9vuAhzcuv2jv83KUOYvb6bcLYvEs&sensor=true">
     </script>
 
 

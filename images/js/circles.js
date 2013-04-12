@@ -64,7 +64,7 @@ function BDCCCircle(point, radiusKm, strokeColor, strokeWeight, strokeOpacity, f
   this.gradId_ = "BDCCCircleGradient" + BDCCCircleId.toString();//for SVG gradient
    
 }
-BDCCCircle.prototype = new GOverlay();
+BDCCCircle.prototype = new google.maps.OverlayView();
 
 //Get/Set methods
 
@@ -258,13 +258,13 @@ BDCCCircle.prototype.getFillOpacity = function() {
 
 //Event posters
 BDCCCircle.prototype.onClick = function(){
-    GEvent.trigger(this,"click");
+    google.maps.Event.trigger(this,"click");
 }
 BDCCCircle.prototype.onOver = function(){
-    GEvent.trigger(this,"mouseover");
+    google.maps.Event.trigger(this,"mouseover");
 }
 BDCCCircle.prototype.onOut = function(){
-    GEvent.trigger(this,"mouseout");
+    google.maps.Event.trigger(this,"mouseout");
 }
 
 // Creates the DIV representing this circle.
@@ -274,9 +274,9 @@ BDCCCircle.prototype.initialize = function(map) {
   this.map_ = map;
 
   //closures for dom event handlers
-  var eClick = GEvent.callback(this,this.onClick);
-  var eOver = GEvent.callback(this,this.onOver);
-  var eOut = GEvent.callback(this,this.onOut);
+  var eClick = google.maps.Event.callback(this,this.onClick);
+  var eOver = google.maps.Event.callback(this,this.onOver);
+  var eOut = google.maps.Event.callback(this,this.onOut);
   
   //set up invariant details
   if(this.usesVml_){
@@ -295,10 +295,10 @@ BDCCCircle.prototype.initialize = function(map) {
 	  }
 	map.getPane(G_MAP_MAP_PANE).appendChild(c);
       
-      GEvent.clearInstanceListeners(c);//safety 
-      GEvent.addDomListener(c,"click",function(event){eClick();});
-      GEvent.addDomListener(c,"mouseover",function(){eOver();});
-      GEvent.addDomListener(c,"mouseout",function(){eOut();});
+      google.maps.Event.clearInstanceListeners(c);//safety 
+      google.maps.Event.addDomListener(c,"click",function(event){eClick();});
+      google.maps.Event.addDomListener(c,"mouseover",function(){eOver();});
+      google.maps.Event.addDomListener(c,"mouseout",function(){eOut();});
       
       this.vmlCircle_ = c;//save for drawing  
       
@@ -342,10 +342,10 @@ BDCCCircle.prototype.initialize = function(map) {
         } 
 	BDCCCircleSvgRoot.appendChild(svgNode);
 	
-	GEvent.clearInstanceListeners(svgNode);//safety 
-	GEvent.addDomListener(svgNode,"click",function(event){eClick();});
-	GEvent.addDomListener(svgNode,"mouseover",function(){eOver();});
-	GEvent.addDomListener(svgNode,"mouseout",function(){eOut();});
+	google.maps.Event.clearInstanceListeners(svgNode);//safety 
+	google.maps.Event.addDomListener(svgNode,"click",function(event){eClick();});
+	google.maps.Event.addDomListener(svgNode,"mouseover",function(){eOver();});
+	google.maps.Event.addDomListener(svgNode,"mouseout",function(){eOut();});
 
 	this.svgNode_ = svgNode;
 	this.svgGrad_ = svgGrad;
@@ -367,12 +367,12 @@ BDCCCircle.prototype.initialize = function(map) {
 BDCCCircle.prototype.remove = function() {
 
   if (this.svgNode_ != null){
-    GEvent.clearInstanceListeners(this.svgNode_);//safety 
+    google.maps.Event.clearInstanceListeners(this.svgNode_);//safety 
     BDCCCircleSvgRoot.removeChild(this.svgNode_);
     this.svgNode_ = null;
   }
   if (this.vmlCircle_ != null){
-    GEvent.clearInstanceListeners(this.vmlCircle_);//safety 
+    google.maps.Event.clearInstanceListeners(this.vmlCircle_);//safety 
     this.map_.getPane(G_MAP_MAP_PANE).removeChild(this.vmlCircle_);
     this.vmlCircle_ = null;    
   }

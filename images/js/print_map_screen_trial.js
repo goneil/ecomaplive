@@ -1,4 +1,11 @@
 var mapPoints = [];
+var shownPoints = [];
+var mapData = {
+    max: 46,
+    data:shownPoints 
+};
+var updated = false;
+var timeStep;
 function initialize() {
     centerLat = minLatLng.lat + (maxLatLng.lat - minLatLng.lat)/2;
     centerLng = minLatLng.lng + (maxLatLng.lng - minLatLng.lng)/2;
@@ -13,7 +20,11 @@ function initialize() {
     map = new google.maps.Map(
         document.getElementById("map"),
         mapOptions);
-
+    heatmap = new HeatmapOverlay(map,{
+        "radius": 25,
+        "visible": true,
+        "opacity":100 
+    });
     
 
     update_map(locations, minLatLng, maxLatLng);
@@ -43,31 +54,41 @@ var update_map = function(locations, minLatLng, maxLatLng){
     // [ [lat, lng, radius, value, id, time], ... ]
 
     for (var i = 0; i < locations.length; i ++){
-        var latLng = new google.maps.LatLng(locations[i][0], locations[i][1]);
-        //var value = parseInt((locations[i][3])/((max+1))*255, 10);
+        latLng = new google.maps.LatLng(locations[i][0], locations[i][1]);
+        var value = parseInt((locations[i][3])/((max+1))*255, 10);
         //var color = "#" + d2h(255 - value)  + d2h(value) + "00";
         var color = "rgb(" + h[clamp(parseInt(locations[i][3] * h.length, 10), 0, h.length - 1)] + ")";
-        circle = new google.maps.Circle({
-            'center': latLng,
-            'clickable':false,
-            'fillColor': color, //decimalToRGB(1.0 - locations[i][3]),
-            'fillOpacity':0.7,
-            'map':map,
-            'radius':locations[i][2]/2,
-            'strokeColor':'#0000A0',
-            'strokeOpacity':'0.0'
-        });
-        circle.time = locations[i][5];
-        mapPoints.push(circle);
-    }
+        //var circle = new google.maps.Circle({
+        //    'center': latLng,
+        //    'clickable':false,
+        //    'fillColor': color, //decimalToRGB(1.0 - locations[i][3]),
+        //    'fillOpacity':0.5,
+        //    'map':map,
+        //    'radius':locations[i][2]/2,
+        //    'strokeColor':'#0000A0',
+        //    'strokeOpacity':'0.0'
+        //});
+        //circle.time = locations[i][5];
 
+        var point = {lat: latLng.lat(), lng: latLng.lng(), count:value, time: locations[i][5]};
+        heatmap.conf.radius = locations[i][2]/5;
+        mapPoints.push(point);
+        shownPoints.push(point);
+    }
+    mapData.data = shownPoints;
+    google.maps.event.addListener(map, "idle", function(){
+        // this is important, because if you set the data set too early, the latlng/pixel projection doesn't work
+        if (!updated){
+            heatmap.setDataSet(mapData);
+            updated = true;
+        }
+    });
     var minTime = Math.min.apply(Math, mapPoints.map(function(v){return v.time;}));
     var maxTime = Math.max.apply(Math, mapPoints.map(function(v){return v.time;}));
 
     if (maxTime > minTime){
-        var timeStep = (maxTime - minTime)/5;
+        timeStep = (maxTime - minTime)/5;
 
-        $("#play").button({icons: {primary:"ui-icon-play"}});
         $("#pause").button({icons: {primary:"ui-icon-pause"}});
         $("#slideshow").append('<div>Time Range: <input id="amount"/><div>');
         $("#slider").slider({
@@ -79,16 +100,31 @@ var update_map = function(locations, minLatLng, maxLatLng){
                 $("#amount").val(minTime + " - " + maxTime);
             },
             slide: function(event, ui){
+                shownPoints = [];
                 for (var i = 0; i < mapPoints.length; i ++){
                     if (mapPoints[i].time >= ui.values[0] && mapPoints[i].time <= ui.values[1]){
-                        mapPoints[i].setMap(map);
-                    }else{
-                        mapPoints[i].setMap(null);
+                        shownPoints.push(mapPoints[i]);
                     }
                 }
+                mapData.data = shownPoints;
+
+                heatmap.setDataSet(mapData);
                 $("#amount").val(ui.values[0] + " - " + ui.values[1]);
             }
         });
+        var id;
+        $("#play").button({icons: {primary:"ui-icon-play"}}).click(function(){
+            id = window.setInterval(function(){
+                var val1 = $("#slider").slider("option", "values")[0];
+                var val2 = $("#slider").slider("option", "values")[1];
+                var max = $("#slider").slider("option", "max");
+                val1 = Math.min(val1 + timeStep, max - timeStep);
+                val2 = Math.min(val2 + timeStep, max);
+                console.log(max);
+                $("#slider").slider({values:[val1, val2]});
+            });
+        });
+
     }
 
 

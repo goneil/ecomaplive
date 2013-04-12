@@ -113,6 +113,8 @@ function printMapScript($map,$options = array()) {
 	?>
 	<!--<script type='text/javascript' src='/images/js/circles.js'></script>-->
 	<!--<script type='text/javascript' src='http://www.bdcc.co.uk/Gmaps/BDCCCircle.js'></script>-->
+    <script type="text/javascript" src="/images/js/heatmap.js"></script>
+    <script type="text/javascript" src="/images/js/heatmap-gmaps.js"></script>
 	<script type="text/javascript">
         var locations = [<?php
             foreach ($points as $point) echo $point,",";
@@ -130,7 +132,9 @@ function printMapScript($map,$options = array()) {
 	</script>
 	<!--<script type='text/javascript' src='/images/js/print_map_screen.js'></script>-->
 
-	<div id="map" style="z-index: 0; width: <?php echo $width;?>px; height: <?php echo $height;?>px;"></div>
+	<!--<div id="map" style="z-index: 0; width: <?php echo $width;?>px; height:
+        <?php echo $height;?>px;"></div>-->
+	<div id="map" style="z-index: 0; width: 100%; height: 100%;"></div>
 	<div id="slideshow" style="z-index: 0; width: <?php echo $width;?>px;">
         <div id="play"></div>
         <div id="pause"></div>
