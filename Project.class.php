@@ -181,7 +181,7 @@ class Project {
         $query = "SELECT id from point where project = $this->id";
         $results = $this->database->query($query);
         while (($row = $results->fetch_array())){
-            $point = Point::loadPoint($row['id']);
+            $point = Point::loadPoint($row['id'], $this->database);
             $point->remove();
         }
         $query = "DELETE FROM `project` WHERE id=".$this->id;

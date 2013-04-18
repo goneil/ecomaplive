@@ -9,8 +9,11 @@ class Point {
 	private $time;
     private static $database;
 	
-	function __construct($projectID, $lat, $lng, $range, $value, $time = "") {
-        $this->database = new Database();
+	function __construct($projectID, $lat, $lng, $range, $value, $time = "",
+    $database) {
+        if (!isset($database)){
+            $this->database = new Database();
+        }
         $this->projectID = $projectID;
 		$this->lat = $lat;
 		$this->lng = $lng;
@@ -31,14 +34,14 @@ class Point {
 
     // TODO return point from db with id $id
     // might have an error with database
-    static function loadPoint($id){
+    static function loadPoint($id, $database){
         $query = "SELECT * FROM `point` WHERE `id` = '$id'";
-        $database = new Database();
 		$info = $database->query($query);
         if ($info){
             $info = $info->fetch_array();
             $point = new Point($info['project'], $info['lat'], $info['lng'],
-                               $info['range'], $info['val'], $info['time']);
+                               $info['range'], $info['val'], $info['time'],
+                               $database);
             $point->setID($info['id']);
             return $point;
         } else{

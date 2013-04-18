@@ -72,3 +72,13 @@ more /etc/passwd
 su root
 su u53887834
 exit
+python
+ls
+git pull origin dev
+git fetch --all
+git reset --hard origin/dev
+mysql -h db1935.perfora.net -u dbo291061718 -pZY.MygZm db291061718 <db_scripts/convert.sql 
+python db_scripts/convert_db.py 
+screen
+screen -r
+screen -r 14099

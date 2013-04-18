@@ -40,6 +40,7 @@ if (isset($request[1])) {
 			$radius = process($_POST['radius']);
 			$value = process($_POST['value']);
 			//stick all the stuff into databases
+            echo ("before adding andy points");
 			for ($i = 0; $i < count($lat); $i++) {
 				if ($value[$i] > 1) $value[$i] = 1;
 				if ($value[$i] < 0) $value[$i] = 0;

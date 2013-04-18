@@ -22,10 +22,10 @@ class ProjMap:
         self.private = private
         self.name = name
 
-HOST = 'localhost'
-USER = 'root'
-PASSWORD = '141991g'
-DB_NAME = 'tmpdb'
+HOST = 'db1935.perfora.net'
+USER = 'dbo291061718'
+PASSWORD = 'ZY.MygZm'
+DB_NAME = 'db291061718'
 
 db = _mysql.connect(HOST, USER, PASSWORD, DB_NAME)
 insert_db = _mysql.connect(HOST, USER, PASSWORD, DB_NAME)

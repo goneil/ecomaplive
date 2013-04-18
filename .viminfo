@@ -7,11 +7,60 @@
 
 # hlsearch on (H) or off (h):
 ~h
+# Last Search Pattern:
+~MSle0~/slider
+
 # Command Line History (newest to oldest):
 :q
 :w
+:set paste
+:tabf map-draw.php
+:tabf images/js/print_map_screen.js
+:tabf images/css/ecostyle.css
+:tabf images/js/print_map_screen_trial.js
+:tabf functions.inc.php
+:tabf da
+:tabf 
+:tabf Project.class.php
+:tabf config.inc.php
+:tabf project-draw.php
+:tabf /homepages/46/d290597568/htdocs/Database.class.php
+:tabf Database.class.php
+:tabf Point.class.php
+:tabf MapPoints.class.php
+:tabf MapPoint.class.php
+:tabf Map.class.php
+:tabf map-calc.php
+:q!
+:tabf /etc/my.cnf
 
 # Search String History (newest to oldest):
+?/slider
+?/slide
+?/Range
+?/Time
+?/Tim
+?/trial
+?/overflow
+?/time
+?/m
+?/loadP
+?/database
+?/Point
+?/this->da
+?/close
+?/map-sc
+?/map
+?/load
+?/getP
+?/point_id_list
+?/getPo
+?/Map
+?/get
+?/getPoin
+?/getPoi
+?/get_po
+?/proj
 
 # Expression History (newest to oldest):
 
@@ -20,14 +69,64 @@
 # Input Line History (newest to oldest):
 
 # Registers:
+"0	LINE	0
+			$this->connection->close();
 ""1	LINE	0
-	./logs
+	
+"2	LINE	0
+	    overflow:scroll;
+"3	LINE	0
+	        $("#slideshow").append('<div>Time Range: <input id="amount"/><div>');
+"4	LINE	0
+	    overflow:scroll;
+"5	LINE	0
+	        console.log("times different")
+"6	LINE	0
+	        echo "forloop end";
+"7	LINE	0
+	
+"8	LINE	0
+	        $database = new Database();
+"9	LINE	0
+	            $database->close();
+"-	CHAR	0
+	_trial
 
 # File marks:
-'0  1  4  ~/.gitignore
-'1  1  0  ~/.vimrc
+'0  101  8  ~/Map.class.php
+'1  82  21  ~/db_scripts/convert_db.py
+'2  1  4  ~/.gitignore
+'3  1  0  ~/.vimrc
 
 # Jumplist (newest first):
+-'  101  8  ~/Map.class.php
+-'  1  4  ~/Map.class.php
+-'  10  47  ~/functions.inc.php
+-'  29  0  ~/map-draw.php
+-'  30  0  ~/map-draw.php
+-'  31  6  ~/map-draw.php
+-'  1  0  ~/map-calc.php
+-'  27  2  ~/project-calc.php
+-'  1  0  ~/project-calc.php
+-'  82  21  ~/db_scripts/convert_db.py
+-'  1  0  ~/db_scripts/convert_db.py
+-'  1  4  ~/.gitignore
+-'  1  0  ~/.vimrc
+-'  1  0  ~/.vimrc
+-'  1  0  ~/.vimrc
+-'  1  0  ~/.vimrc
+-'  1  4  ~/.gitignore
+-'  1  0  ~/.vimrc
+-'  1  0  ~/.vimrc
+-'  1  0  ~/.vimrc
+-'  1  0  ~/.vimrc
+-'  82  21  ~/db_scripts/convert_db.py
+-'  1  0  ~/db_scripts/convert_db.py
+-'  1  4  ~/.gitignore
+-'  1  0  ~/.vimrc
+-'  1  0  ~/.vimrc
+-'  1  0  ~/.vimrc
+-'  1  0  ~/.vimrc
 -'  1  4  ~/.gitignore
 -'  1  0  ~/.vimrc
 -'  1  0  ~/.vimrc
@@ -35,6 +134,139 @@
 -'  1  0  ~/.vimrc
 
 # History of marks within files (newest to oldest):
+
+> ~/project-calc.php
+	"	27	2
+
+> ~/map-calc.php
+	"	24	11
+	.	25	0
+	+	4	0
+	+	22	0
+	+	4	0
+	+	25	0
+	+	25	0
+	+	51	0
+	+	51	0
+	+	44	0
+	+	43	0
+	+	22	23
+	+	64	0
+	+	22	4
+	+	22	24
+	+	22	0
+	+	23	0
+	+	25	0
+
+> ~/map-draw.php
+	"	39	0
+	.	30	0
+	+	31	0
+	+	31	0
+	+	30	0
+
+> ~/functions.inc.php
+	"	142	9
+	.	143	0
+	+	10	0
+	+	11	0
+	+	10	0
+	+	143	64
+	+	143	0
+	+	143	0
+	+	143	0
+	+	143	0
+
+> ~/Map.class.php
+	"	101	8
+	^	99	71
+	.	101	0
+	+	96	34
+	+	97	31
+	+	99	27
+	+	101	26
+	+	99	0
+	+	99	0
+	+	100	35
+	+	97	0
+	+	96	0
+	+	100	0
+	+	98	0
+	+	99	70
+	+	101	0
+
+> ~/MapPoint.class.php
+	"	1	4
+
+> ~/MapPoints.class.php
+	"	4	10
+
+> ~/Point.class.php
+	"	45	38
+	^	44	40
+	.	44	39
+	+	46	34
+	+	49	22
+	+	46	22
+	+	49	27
+	+	46	0
+	+	49	0
+	+	37	35
+	+	39	0
+	+	13	12
+	+	14	29
+	+	16	8
+	+	15	11
+	+	14	12
+	+	44	39
+
+> ~/Database.class.php
+	"	37	2
+	^	38	5
+	.	37	0
+	+	33	0
+	+	38	4
+	+	37	0
+
+> ~/images/css/ecostyle.css
+	"	262	0
+	.	262	0
+	+	262	0
+	+	262	0
+
+> ~/project-draw.php
+	"	30	0
+
+> ~/config.inc.php
+	"	2	0
+	.	2	0
+	+	2	0
+
+> ~/Project.class.php
+	"	184	28
+	^	184	65
+	.	184	64
+	+	184	64
+
+> ~/images/js/print_map_screen_trial.js
+	"	66	8
+	.	66	0
+	+	66	0
+
+> ~/images/js/print_map_screen.js
+	"	69	8
+	.	69	0
+	+	69	0
+	+	69	0
+
+> ~/db_scripts/convert_db.py
+	"	82	21
+	^	28	22
+	.	28	17
+	+	25	8
+	+	26	15
+	+	27	12
+	+	28	17
 
 > ~/.gitignore
 	"	1	4

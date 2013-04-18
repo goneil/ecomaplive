@@ -140,7 +140,7 @@ function printMapScript($map,$options = array()) {
         <div id="pause"></div>
         <div id="slider"></div>
     </div>
-	<script type='text/javascript' src='/images/js/print_map_screen_trial.js'></script>
+	<script type='text/javascript' src='/images/js/print_map_screen.js'></script>
 <?php 
 }
 

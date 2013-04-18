@@ -96,7 +96,7 @@ class Map {
         $map_points = MapPoints::loadMapPoints($this->id);
         $point_list = array();
         foreach($map_points->getPoints() as $point_id){
-            array_push($point_list, Point::loadPoint($point_id));
+            array_push($point_list, Point::loadPoint($point_id, $this->database));
         }
         return $point_list;
     }

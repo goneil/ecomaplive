@@ -32,6 +32,10 @@ class Database {
 		//close the connection
 		$this->connection->close();
 	}
+
+    function close(){
+		$this->connection->close();
+    }
 	
 	function __sleep() {
 		//$this->connection->close();
