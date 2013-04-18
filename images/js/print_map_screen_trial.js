@@ -1,10 +1,4 @@
 var mapPoints = [];
-var shownPoints = [];
-var mapData = {
-    max: 46,
-    data:shownPoints 
-};
-var updated = false;
 var timeStep;
 function initialize() {
     centerLat = minLatLng.lat + (maxLatLng.lat - minLatLng.lat)/2;
@@ -20,13 +14,6 @@ function initialize() {
     map = new google.maps.Map(
         document.getElementById("map"),
         mapOptions);
-    heatmap = new HeatmapOverlay(map,{
-        "radius": 25,
-        "visible": true,
-        "opacity":100 
-    });
-    
-
     update_map(locations, minLatLng, maxLatLng);
 }
 google.maps.event.addDomListener(window, 'load', initialize);
@@ -58,31 +45,20 @@ var update_map = function(locations, minLatLng, maxLatLng){
         var value = parseInt((locations[i][3])/((max+1))*255, 10);
         //var color = "#" + d2h(255 - value)  + d2h(value) + "00";
         var color = "rgb(" + h[clamp(parseInt(locations[i][3] * h.length, 10), 0, h.length - 1)] + ")";
-        //var circle = new google.maps.Circle({
-        //    'center': latLng,
-        //    'clickable':false,
-        //    'fillColor': color, //decimalToRGB(1.0 - locations[i][3]),
-        //    'fillOpacity':0.5,
-        //    'map':map,
-        //    'radius':locations[i][2]/2,
-        //    'strokeColor':'#0000A0',
-        //    'strokeOpacity':'0.0'
-        //});
-        //circle.time = locations[i][5];
+        var circle = new google.maps.Circle({
+            'center': latLng,
+            'clickable':false,
+            'fillColor': color, //decimalToRGB(1.0 - locations[i][3]),
+            'fillOpacity':0.5,
+            'map':map,
+            'radius':locations[i][2]/2,
+            'strokeColor':'#0000A0',
+            'strokeOpacity':'0.0'
+        });
+        circle.time = locations[i][5];
 
-        var point = {lat: latLng.lat(), lng: latLng.lng(), count:value, time: locations[i][5]};
-        heatmap.conf.radius = locations[i][2]/5;
-        mapPoints.push(point);
-        shownPoints.push(point);
+        mapPoints.push(circle);
     }
-    mapData.data = shownPoints;
-    google.maps.event.addListener(map, "idle", function(){
-        // this is important, because if you set the data set too early, the latlng/pixel projection doesn't work
-        if (!updated){
-            heatmap.setDataSet(mapData);
-            updated = true;
-        }
-    });
     var minTime = Math.min.apply(Math, mapPoints.map(function(v){return v.time;}));
     var maxTime = Math.max.apply(Math, mapPoints.map(function(v){return v.time;}));
 
@@ -100,15 +76,13 @@ var update_map = function(locations, minLatLng, maxLatLng){
                 $("#amount").val(minTime + " - " + maxTime);
             },
             slide: function(event, ui){
-                shownPoints = [];
                 for (var i = 0; i < mapPoints.length; i ++){
                     if (mapPoints[i].time >= ui.values[0] && mapPoints[i].time <= ui.values[1]){
-                        shownPoints.push(mapPoints[i]);
+                        mapPoints[i].setMap(map);
+                    }else{
+                        mapPoints[i].setMap(null);
                     }
                 }
-                mapData.data = shownPoints;
-
-                heatmap.setDataSet(mapData);
                 $("#amount").val(ui.values[0] + " - " + ui.values[1]);
             }
         });

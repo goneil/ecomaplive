@@ -1,6 +1,6 @@
 ################################################################################
 #   This file converts the old database format to the new format.
-#   Before running this file, you must run the db_scripts/new_db_schema.sql file
+#   Before running this file, you must run the db_scripts/convert.sql file
 #   on the database.
 ################################################################################
 
@@ -25,7 +25,7 @@ class ProjMap:
 HOST = 'localhost'
 USER = 'root'
 PASSWORD = '141991g'
-DB_NAME = 'ecomaplive_old'
+DB_NAME = 'tmpdb'
 
 db = _mysql.connect(HOST, USER, PASSWORD, DB_NAME)
 insert_db = _mysql.connect(HOST, USER, PASSWORD, DB_NAME)
