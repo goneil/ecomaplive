@@ -360,6 +360,16 @@ form div{
     margin-left: 10px;
     margin-top: 15px;
 }
+
+#demo-div{
+    overflow: auto;
+}
+
+.fix-bottom{
+    position: absolute;
+    bottom: 10px;
+    margin: 0 auto;
+}
 /* css for timepicker */
 .ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
 .ui-timepicker-div dl { text-align: left; }

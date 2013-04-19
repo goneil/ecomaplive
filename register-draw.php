@@ -1,12 +1,15 @@
 <div>
 	<h2>Create new user</h2>
-	<form method="post">
-		Username: <input name="uname" /> <br />
-		Password: <input name='pass' type="password" /> <br />
-		<br />
-		Your Name: <input name="name" /> <br />
-		Email Address: <input name='email' /> <br />
-		<br />
-		<input type="submit" value="Register" name="newUser" />
-	</form>
+<form class="form-inline" method="post">
+    </br>
+    <input name="name" type="text" class="input-small" placeholder="Your Name" /> 
+    <input name="email" type="text" class="input-small" placeholder="Email" /> 
+    </br>
+    </br>
+    <input name="uname" type="text" class="input-small" placeholder="Username">
+    <input name="pass" type="password" class="input-small" placeholder="Password">
+    </br>
+    </br>
+    <input type="submit" value="Register" name="newUser" class="btn" />
+</form>
 </div>

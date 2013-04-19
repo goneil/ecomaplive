@@ -9,12 +9,12 @@ if (isset($request[1])) {
 	if ($request[1] == 'add') {
 		echo '<h2>Add a project</h2>';
 		echo '<form method="post">';
-		echo '<div><input placeholder="Name" name="name" /></div>';
-		echo '<div><input placeholder="Description" name="desc" /></div>';
-		echo '<div><input placeholder="Blurb" name="blurb" /></div>';
+		echo '<div><input type="text" placeholder="Name" name="name" /></div>';
+		echo '<div><input type="text" placeholder="Description" name="desc" /></div>';
+		echo '<div><input type="text" placeholder="Blurb" name="blurb" /></div>';
 		echo '<div><input type="radio" name="group1" value="private" CHECKED>Private ';
 		echo '<input type="radio" name="group1" value="public">Public</div>';
-		echo '<div><input name="add" value="Submit" type="submit" /></div>';
+		echo '<div><input class="btn" name="add" value="Submit" type="submit" /></div>';
 	} else {
         include("project-header.php"); 
         echo '<div id="map-header">';
