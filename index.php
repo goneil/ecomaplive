@@ -41,6 +41,11 @@ if (loggedIn()) {
 <head>
     <link rel="stylesheet" type="text/css" href="http://<?php echo
     $_SERVER['HTTP_HOST'];?>/images/css/ecostyle.css" />
+    <link rel="stylesheet" type="text/css" href="http://<?php echo
+    $_SERVER['HTTP_HOST'];?>/images/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="http://<?php echo
+    $_SERVER['HTTP_HOST'];?>/images/css/bootstrap-responsive.min.css" />
+
     <link rel="stylesheet" type="text/css" href="/images/resources/jquery-ui-1.10.2.custom/css/ui-lightness/jquery-ui-1.10.2.custom.min.css">
     <link rel="stylesheet" type="text/css" href="/images/resources/jquery-ui-1.10.2.custom/css/ui-lightness/jquery-ui-1.10.2.custom.css">
     <script type="text/javascript" src="/images/resources/jquery-ui-1.10.2.custom/js/jquery-1.9.1.js"></script>

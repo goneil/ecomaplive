@@ -21,22 +21,20 @@ if (isset($request[1])) {
 		echo '<div id="map-title">',$project->getName(),' Maps</div>';
 
 		if (loggedIn() && $project->isAdmin($userInfo['uid'])) {
-            echo '<div id="add-map"><button class="button"><a  href="' . $basepath .
-            '/create_map/' . $project->getID() . '">Add Map</a></button></div>';
+            echo '<a class="btn pull-right"  href="' . $basepath .
+            '/create_map/' . $project->getID() . '">Add Map</a>';
         }
         echo '</div>';
 		$maps = $project->getMaps();
         show_map_list($maps);
 	}
 } else {
-	echo '<div>';
-	echo '<h2>Your EcoMap Projects</h2>';
+	echo '<div class="pull-left"><h2 >Your EcoMap Projects</h2></div>';
 	if (loggedIn()){
         ?>
-        <div class="projectContainer button">
-            <a class="projectLink" href="http://<?php echo $_SERVER['HTTP_HOST'];?>/project/add/">
-                New Project
-            </a>
+        <div class="pull-left" id="new-button-div">
+            <a class="btn" href="http://<?php echo
+            $_SERVER['HTTP_HOST'];?>/project/add/">New Project</a>
         </div>
         
         <?php

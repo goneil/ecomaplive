@@ -1,6 +1,7 @@
 <?php
 if (isset($request[1])) {
 	$map = Map::loadMap($request[1]);
+    $database = new Database();
 	$options = array();
 	$options['width'] = 525;
 	$options['height'] = 400;
@@ -46,8 +47,8 @@ if (isset($request[1])) {
 				//$query = "INSERT INTO `data` VALUES ('0','$lat[$i]','$lng[$i]','$radius[$i]','$value[$i]',NOW())";
 				//echo $query;
 				//if (!mysql_query($query)) die('Invalid query: ' . mysql_error());
-				$point = new Point($lat[$i], $lng[$i], $map->getID(), $userInfo['uid'], $radius[$i], $value[$i]);
-				$map->addPoint($point);
+				$point = new Point($lat[$i], $lng[$i], $map->getID(),
+                $userInfo['uid'], $radius[$i], $value[$i], $database);
 			}
 		}
 	}

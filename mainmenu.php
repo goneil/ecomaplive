@@ -31,7 +31,7 @@
             <li><a href="http://<?php echo $_SERVER['HTTP_HOST'];?>/tech/sensors.php">Sensors</a></li>
         </ul>
 	</li>
-    <li><a href="http://<?php echo $_SERVER['HTTP_HOST'];?>/projects">Open Projects</a></li>
+    <li><a href="http://<?php echo $_SERVER['HTTP_HOST'];?>/projects">Public Projects</a></li>
     <li><a href="http://<?php echo $_SERVER['HTTP_HOST'];?>/getinvolved">Get Involved</a>
         <ul class= "submenu">
 			<li><a href="http://<?php echo $_SERVER['HTTP_HOST'];?>/getinvolved/students.php">Students</a></li>

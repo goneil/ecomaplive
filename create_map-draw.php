@@ -1,4 +1,5 @@
 <script type="text/javascript" src="/images/js/create_map.js"></script>
+<h2>Create New Map</h2>
 <form method="post" action="/create_map">
     <div id="select_project">
         Project: 
@@ -33,7 +34,7 @@
     </div>
     <div>
         <div class="input_title">
-            <input placeholder="Map Title" name="map_name" />
+            <input type="text" placeholder="Map Title" name="map_name" />
         </div>
     </div>
     <div id="dates">
@@ -61,7 +62,7 @@
         <input type="radio" name="isPrivate" value="0"/>Public
     </div>
     <div>
-        <input name="create_map" value="Submit" type="submit" />
+        <input class="btn" name="create_map" value="Submit" type="submit" />
     </div>
 
 </form>

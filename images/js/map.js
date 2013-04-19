@@ -38,7 +38,7 @@ $(document).ready(function() {
     
     $("#map-switch").click(function(){
         if ($(this).text() == "Show Plot"){
-            $(this).button('option', 'label', 'Show Map');
+            $(this).text("Show Map");
             // Also should show plot
             // could do this by hiding map and showing plot
             $("#map-screen").hide();
@@ -46,7 +46,7 @@ $(document).ready(function() {
             $("#plot-screen").show();
             $("#plot-title").show();
         } else{
-            $(this).button('option', 'label', 'Show Plot');
+            $(this).text("Show Plot")
             // Also should show map
             // could do this by hiding plot and showing map
             $("#plot-screen").hide();

@@ -4,19 +4,22 @@
             echo '<div class="project-header">';
                 echo "<div id='project-title'>" . $project->getName() . "</div>";
 		        if (loggedIn() && $project->isAdmin($userInfo['uid'])) {
-                    echo '<div id="upload-button">';
-                        echo '<button class="button">';
-                            echo '<a href="http://' . $_SERVER['HTTP_HOST'] .
+                    echo '<a class="btn pull-right" href="http://' . $_SERVER['HTTP_HOST'] .
                             '/upload/' . $project->getid() . '">Upload Points</a>';
-                        echo '</button>';
-                    echo '</div>';
                 }
+                $database = new Database();
+                $query = "SELECT id from point where project =" .  $project->getId();
+                $totalPoints = $database->query($query)->num_rows;
             echo '</div>';
 
         echo "<br/><br/><br/>";
 		echo 'Description: ',$project->getDescription(),'<br />';
 		echo 'Blurb: ',$project->getBlurb(),'<br />';
 		echo 'This project is ',$project->getPrivate(),'<br />';
+        echo "<div>
+                Total Data Points: <input class='input-small' disabled
+                value='$totalPoints'>
+              </div>";
 		if (loggedIn() && $project->isAdmin($userInfo['uid'])) {
 			if (isset($request[2]) && $request[2] == 'admin') {
 				if (isset($request[3]) && $request[3] == 'add') { ?>
@@ -28,7 +31,7 @@
 					</form><br />
 					<?php	
 				} else {
-					echo '<h3>Administrative Functions</h3>';
+					echo '<h3>Project Properties</h3>';
 
                     $baseurl = "http://$_SERVER[HTTP_HOST]/project/" .
                                $project->getId() . "/admin";
@@ -77,7 +80,8 @@
 				}
 
 			} else {
-				echo '<a href="http://',$_SERVER['HTTP_HOST'],'/project/',$project->getId(),'/admin">Admin Section</a><br /><br />';
+				echo '<a
+                href="http://',$_SERVER['HTTP_HOST'],'/project/',$project->getId(),'/admin">Edit Project Properties</a><br /><br />';
 			}
 		}
         

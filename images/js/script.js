@@ -12,7 +12,6 @@ $(document).ready(function() {
         }
         return false;
     });
-    $(":button").button();
 });
 
 jQuery.fn.liveUpdate = function(list){
