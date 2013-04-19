@@ -10,10 +10,8 @@ class Point {
     private static $database;
 	
 	function __construct($projectID, $lat, $lng, $range, $value, $time = "",
-    $database=null) {
-        if ($database != null){
-            $this->database = $database;
-        }else{
+    $database) {
+        if (!isset($database)){
             $this->database = new Database();
         }
         $this->projectID = $projectID;
@@ -42,7 +40,8 @@ class Point {
         if ($info){
             $info = $info->fetch_array();
             $point = new Point($info['project'], $info['lat'], $info['lng'],
-                               $info['range'], $info['val'], $info['time']);
+                               $info['range'], $info['val'], $info['time'],
+                               $database);
             $point->setID($info['id']);
             return $point;
         } else{
