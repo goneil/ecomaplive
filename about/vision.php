@@ -11,8 +11,10 @@
     <div class="banner" id="banner1"><img src="<?php echo $_SERVER['SERVER_HOST'];?>/images/grassbanner1.jpg"></img></div>
     <?php include ("../mainmenu.php"); ?>
     <div class="content">
+      <h2>Vision</h2>
       <p>
-      INSERT VISION HERE
+        Our team strives to allow users to visualize sensor data to make it
+        analysis simpler and more efficient.
       </p>
     </div>
 </div>

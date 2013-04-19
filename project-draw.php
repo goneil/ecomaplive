@@ -18,7 +18,7 @@ if (isset($request[1])) {
 	} else {
         include("project-header.php"); 
         echo '<div id="map-header">';
-		echo '<div id="map-title">',$project->getName(),' Maps</div>';
+		echo '<div id="map-title">',$project->getName(),' Maps:</div>';
 
 		if (loggedIn() && $project->isAdmin($userInfo['uid'])) {
             echo '<a class="btn pull-right"  href="' . $basepath .
@@ -29,10 +29,10 @@ if (isset($request[1])) {
         show_map_list($maps);
 	}
 } else {
-	echo '<div class="pull-left"><h2 >Your EcoMap Projects</h2></div>';
+	echo '<div class="pull-left"><h2 >My Existing Projects:</h2></div>';
 	if (loggedIn()){
         ?>
-        <div class="pull-left" id="new-button-div">
+        <div class="pull-right" id="new-button-div">
             <a class="btn" href="http://<?php echo
             $_SERVER['HTTP_HOST'];?>/project/add/">New Project</a>
         </div>

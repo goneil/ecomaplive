@@ -5,12 +5,17 @@
 <head>
     <link rel="stylesheet" type="text/css" href="<?php echo
     $_SERVER['SERVER_HOST'];?>/images/css/ecostyle.css" />
+    <link rel="stylesheet" type="text/css" href="http://<?php echo
+    $_SERVER['HTTP_HOST'];?>/images/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="http://<?php echo
+    $_SERVER['HTTP_HOST'];?>/images/css/bootstrap-responsive.min.css" />
 </head>
 <body>
 <div class="all">
     <div class="banner" id="banner5"><img src="<?php echo $_SERVER['SERVER_HOST'];?>/resources/bannerresources.jpg"></img></div>
     <?php include ("../mainmenu.php"); ?>
     <div class="content">
+      <h2>Resources</h2>
       <p>
       <ul>
       <li><a href="http://code.google.com/apis/maps/">Google Maps API</a>: Learn how to make your own map applications.</li>

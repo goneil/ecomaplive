@@ -5,6 +5,10 @@
 <head>
     <link rel="stylesheet" type="text/css" href="<?php echo
     $_SERVER['SERVER_HOST'];?>/images/css/ecostyle.css" />
+    <link rel="stylesheet" type="text/css" href="http://<?php echo
+    $_SERVER['HTTP_HOST'];?>/images/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="http://<?php echo
+    $_SERVER['HTTP_HOST'];?>/images/css/bootstrap-responsive.min.css" />
 </head>
 <body>
 <div class="all">

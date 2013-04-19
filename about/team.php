@@ -11,14 +11,16 @@
     <div class="banner" id="banner1"><img src="<?php echo $_SERVER['SERVER_HOST'];?>/images/grassbanner1.jpg"></img></div>
     <?php include ("../mainmenu.php"); ?>
     <div class="content">
+      <h2>Our Team</h2>
       <p>
       Supervisor: <br /> <a href="http://web.media.mit.edu/~fletcher/">Rich Fletcher</a> <br /><br />
 
       Students: <br /> Yuta Kuboyama<br /><br />
 
-      UROPs: <br /> Coco Agbeyibor <br />
+      <a href="http://web.mit.edu/urop/">UROPs:</a> <br /> Coco Agbeyibor <br />
       Jason Chiu <br />
       Michaela LaVan <br />
+      Gilbert O'Neil<br/>
       </p>
     </div>
 </div>
