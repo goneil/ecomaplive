@@ -13,7 +13,7 @@
     <div class="content">
       <h2>Vision</h2>
       <p>
-        Our team strives to allow users to visualize sensor data to make it
+        Our team strives to allow users to visualize sensor data to make
         analysis simpler and more efficient.
       </p>
     </div>
