@@ -135,10 +135,33 @@ function printMapScript($map,$options = array()) {
 	<!--<div id="map" style="z-index: 0; width: <?php echo $width;?>px; height:
         <?php echo $height;?>px;"></div>-->
 	<div id="map" style="z-index: 0; width: 100%; height: 100%;"></div>
-	<div id="slideshow" style="z-index: 0; width: <?php echo $width;?>px;">
-        <div id="play"></div>
-        <div id="pause"></div>
-        <div id="slider"></div>
+	<div id="slideshow" style="z-index: 0; width: 100%;">
+        <div id="play">
+            <button class="btn btn-small">
+                <i class="icon-play"></i>
+            </button>
+        </div>
+        <div id="pause">
+            <button class="btn btn-small">
+                <i class="icon-pause"></i>
+            </button>
+        </div>
+        <div>
+            <div id="slider"></div>
+            <div id="sliderTicks">
+                <span style="left: 0%"></span>
+                <span style="left: 10%"></span>
+                <span style="left: 20%"></span>
+                <span style="left: 30%"></span>
+                <span style="left: 40%"></span>
+                <span style="left: 50%"></span>
+                <span style="left: 60%"></span>
+                <span style="left: 70%"></span>
+                <span style="left: 80%"></span>
+                <span style="left: 90%"></span>
+                <span style="left: 100%"></span>
+            </div>
+        </div>
     </div>
 	<script type='text/javascript' src='/images/js/print_map_screen_trial.js'></script>
 <?php 

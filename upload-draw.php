@@ -28,6 +28,6 @@
 	?>
 	Choose a file to upload: <input name="file" type="file" /><br />
 	<br />
-	<input type="submit" value="Upload" name="upload" />
+	<input class="btn" type="submit" value="Upload" name="upload" />
 	</form>
 <?php } ?>

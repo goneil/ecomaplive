@@ -10,13 +10,16 @@ $(document).ready(function() {
     // [3] : value
     // [4] : ID         can ignore
     // [5] : time
-    
-    var plotValues = []
+    var plotValues = [];
     for (var i = 0; i < jsPoints.length; i ++){
         var x = jsPoints[i][5];
-        var y = jsPoints[i][3]
-        plotValues.push([x, y]);
+        var y = jsPoints[i][3];
+        if (x !== undefined && y !== undefined){
+            plotValues.push([x, y]);
+        }
     }
+
+    console.log(plotValues);
 
     $.jqplot('plot', [plotValues], {
         title: "The Dependence of Value on Time",
@@ -25,17 +28,16 @@ $(document).ready(function() {
                 renderer: $.jqplot.DateAxisRenderer,
                 tickRenderer: $.jqplot.CanvasAxisTickRenderer,
                 tickOptions: {
-                    formatString: '%m-%d-%Y %H:%M',
+                    formatString: '%m-%d-%Y %H:%M:%S',
                     angle: -60
                 }
-            },
+            }
         }
     });
 
     $("#plot-screen").hide();
     $("#plot-title").hide();
 
-    
     $("#map-switch").click(function(){
         if ($(this).text() == "Show Plot"){
             $(this).text("Show Map");
@@ -46,7 +48,7 @@ $(document).ready(function() {
             $("#plot-screen").show();
             $("#plot-title").show();
         } else{
-            $(this).text("Show Plot")
+            $(this).text("Show Plot");
             // Also should show map
             // could do this by hiding plot and showing map
             $("#plot-screen").hide();

@@ -1,5 +1,6 @@
 var mapPoints = [];
-var timeStep;
+var playid;
+var timestep;
 function initialize() {
     centerLat = minLatLng.lat + (maxLatLng.lat - minLatLng.lat)/2;
     centerLng = minLatLng.lng + (maxLatLng.lng - minLatLng.lng)/2;
@@ -59,53 +60,109 @@ var update_map = function(locations, minLatLng, maxLatLng){
 
         mapPoints.push(circle);
     }
-    var minTime = Math.min.apply(Math, mapPoints.map(function(v){return v.time;}));
-    var maxTime = Math.max.apply(Math, mapPoints.map(function(v){return v.time;}));
+    minTime = Math.min.apply(Math, mapPoints.map(function(v){return v.time;}));
+    maxTime = Math.max.apply(Math, mapPoints.map(function(v){return v.time;}));
+    timestep = maxTime - minTime;
 
     if (maxTime > minTime){
-        timeStep = (maxTime - minTime)/5;
+        timestep = (maxTime - minTime)/5;
 
-        $("#pause").button({icons: {primary:"ui-icon-pause"}});
-        $("#slideshow").append('<div>Time Range: <input id="amount"/><div>');
+        $("#slideshow").append('<div class="pull-left">Time Step: <input style="width:400px" id="amount"/><div>');
         $("#slider").slider({
             range: true,
             values: [minTime, maxTime],
             min: minTime,
             max: maxTime,
             create:function(){
-                $("#amount").val(minTime + " - " + maxTime);
-            },
-            slide: function(event, ui){
+                $("#amount").val();
                 for (var i = 0; i < mapPoints.length; i ++){
-                    if (mapPoints[i].time >= ui.values[0] && mapPoints[i].time <= ui.values[1]){
+                
+                    var val1 = $("#slider").slider("option", "values")[0];
+                    var val2 = $("#slider").slider("option", "values")[1];
+                    if (mapPoints[i].time >= val1 && mapPoints[i].time <= val2){
                         mapPoints[i].setMap(map);
                     }else{
                         mapPoints[i].setMap(null);
                     }
                 }
-                $("#amount").val(ui.values[0] + " - " + ui.values[1]);
+                // set up tick marks
+                var difference = maxTime - minTime;
+                var ticks = $($("#sliderTicks").children());
+                for (var j = 0; j <= 10; j++){
+                    var tickTime = (minTime + j * 0.1 * difference);
+                    var  tickDate = dateString(new Date(tickTime));
+                    var mdy = tickDate.split(" ")[0];
+                    var hms = tickDate.split(" ")[1];
+                    $(ticks[j]).html(mdy + "&mdash;<br/>" + hms);
+                }
+
+                var d1 = new Date(val1);
+                var d2 = new Date(val2);
+                timestep = d2.getTime() - d1.getTime();
+                $("#amount").val(dateString(d1) + " - " + dateString(d2));
+
+            },
+            change: changeFunc,
+            slide: slideFunc
+        });
+        $("#pause").click(function(){
+            clearInterval(playid);
+            playid = undefined;
+        });
+        $("#play").click(function(){
+            if (playid === undefined){
+                playid = setInterval(function(){
+                    var val1 = $("#slider").slider("option", "values")[0];
+                    var val2 = $("#slider").slider("option", "values")[1];
+                    var max = $("#slider").slider("option", "max");
+                    //val1 = Math.min(val1 + timestep, max - timestep);
+                    //val2 = Math.min(val2 + timestep, max);
+                    if (val2 < maxTime){
+                        console.log("less");
+                        val1 += timestep;
+                        val2 += timestep;
+                        $("#slider").slider({values:[val1, val2]});
+                    }else{
+                        $("#pause").click();
+                    }
+                }, 2000);
             }
         });
-        var id;
-        $("#play").button({icons: {primary:"ui-icon-play"}}).click(function(){
-            id = window.setInterval(function(){
-                var val1 = $("#slider").slider("option", "values")[0];
-                var val2 = $("#slider").slider("option", "values")[1];
-                var max = $("#slider").slider("option", "max");
-                val1 = Math.min(val1 + timeStep, max - timeStep);
-                val2 = Math.min(val2 + timeStep, max);
-                console.log(max);
-                $("#slider").slider({values:[val1, val2]});
-            });
-        });
-
     }
 
 
 
 };
 
+var changeFunc = function(event, ui){
+    for (var i = 0; i < mapPoints.length; i ++){
+        if (mapPoints[i].time >= ui.values[0] && mapPoints[i].time <= ui.values[1]){
+            mapPoints[i].setMap(map);
+        }else{
+            mapPoints[i].setMap(null);
+        }
+    }
+    var d1 = new Date(ui.values[0]);
+    var d2 = new Date(ui.values[1]);
+    $("#amount").val(dateString(d1) + " - " + dateString(d2));
+};
 
+var slideFunc = function(event, ui){
+    changeFunc(event, ui);
+    var d1 = new Date(ui.values[0]);
+    var d2 = new Date(ui.values[1]);
+    timestep = d2.getTime() - d1.getTime();
+};
+
+function dateString(temp) {
+    var dateStr = (1 + temp.getMonth()) + "/" + 
+                  temp.getDate() + "/" + 
+                  temp.getFullYear() + " " +
+                  temp.getHours() + ":" + 
+                  temp.getMinutes() +  ":" + 
+                  temp.getSeconds();
+    return dateStr;
+}
 
 var clamp = function(num, min, max){
     if (num < min){ return min; }
@@ -124,6 +181,7 @@ var decimalToRGB = function(dec){
     var scalingFactor = max - min;
     return "#" + d2h(min + parseInt(dec * scalingFactor, 10));
 };
+
 //define the colours from 0 to 100
 var h = [];
 //BLUEST

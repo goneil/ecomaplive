@@ -340,7 +340,6 @@ form div{
 }
 
 #slideshow{
-    overflow: hidden;
 }
 #play{
     float: left;
@@ -352,10 +351,10 @@ form div{
 }
 #slider{
     float: left;
-    width: 70%;
-    margin: 5px;
+    width: 80%;
+    margin-top: 8px;
+    margin-left: 10px;
 }
-
 #new-button-div{
     margin-left: 10px;
     margin-top: 15px;
@@ -363,6 +362,28 @@ form div{
 
 #demo-div{
     overflow: auto;
+}
+
+#sliderTicks{
+    position: relative;
+    height: 80px;
+    float: left;
+    width: 80%;
+    margin-top: 40px;
+    margin-left: -23px;
+
+}
+#sliderTicks span{
+    height: 28px;
+    width: 78px;
+    display: block;
+    position: absolute;
+    text-align: center;
+    line-height: 100%;
+    -webkit-transform: rotate(-90deg); 
+    -moz-transform: rotate(-90deg)
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+
 }
 
 .fix-bottom{
