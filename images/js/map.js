@@ -19,8 +19,6 @@ $(document).ready(function() {
         }
     }
 
-    console.log(plotValues);
-
     $.jqplot('plot', [plotValues], {
         title: "The Dependence of Value on Time",
         axes: {

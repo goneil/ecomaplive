@@ -118,7 +118,6 @@ var update_map = function(locations, minLatLng, maxLatLng){
                     //val1 = Math.min(val1 + timestep, max - timestep);
                     //val2 = Math.min(val2 + timestep, max);
                     if (val2 < maxTime){
-                        console.log("less");
                         val1 += timestep;
                         val2 += timestep;
                         $("#slider").slider({values:[val1, val2]});
@@ -128,6 +127,8 @@ var update_map = function(locations, minLatLng, maxLatLng){
                 }, 2000);
             }
         });
+    }else{
+        $("#slideshow").hide();
     }
 
 
