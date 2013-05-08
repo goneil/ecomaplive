@@ -59,8 +59,18 @@
     </div>
     <div id="isPrivate_div">
         <input type="radio" name="isPrivate" value="1" checked/>Private
+        </br>
         <input type="radio" name="isPrivate" value="0"/>Public
     </div>
+    <br/>
+    <div id="absolute_div">
+        <input type="radio" name="absolute" value="1" checked/>Absolute
+        <br/>
+        <input type="radio" name="absolute" value="0"/>Normalized
+        <input class="input-small" placeholder="min"/>
+        <input class="input-small" placeholder="max"/>
+    </div>
+
     <div>
         <input class="btn" name="create_map" value="Submit" type="submit" />
     </div>

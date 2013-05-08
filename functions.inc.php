@@ -136,6 +136,16 @@ function printMapScript($map,$options = array()) {
         <?php echo $height;?>px;"></div>-->
 	<div id="map" style="z-index: 0; width: 100%; height: 100%;"></div>
 	<div id="slideshow" style="z-index: 0; width: 100%;">
+        <span>
+            Speed (ms):<input class="input-small" id="speed" placeholder="100"/>
+        </span>
+        <span>
+            Step Size(minutes):<input class="input-small" id="stepSize"
+            placeholder="100"/>
+        </span>
+        </br>
+
+
         <div id="play">
             <button class="btn btn-small">
                 <i class="icon-play"></i>
@@ -163,6 +173,7 @@ function printMapScript($map,$options = array()) {
             </div>
         </div>
     </div>
+    <script type="text/javascript" src="/images/js/circles.js"></script>
 	<script type='text/javascript' src='/images/js/print_map_screen_trial.js'></script>
 <?php 
 }
@@ -311,6 +322,10 @@ function show_map_list($maps){
         echo "<li class='list-icon button map' id='" . $map->getName() . "'>";
                 echo '<a class="mapLink" href="http://',$_SERVER['HTTP_HOST'],'/map/',$map->getID(),'">'.$map->getName().'</a><br>';
         echo "</li>";
+        if ($map->getName() == "first" || $map->getName() == "S02" ||
+        $map->getName() == "overlayed trials"){
+            $map->remove();
+        }
     }
 
 }

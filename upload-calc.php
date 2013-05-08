@@ -11,18 +11,19 @@ if (isset($_POST['upload'])) {
     $project = new Project($request[1]);
 	$filename = $_FILES['file']['tmp_name'];
 	$file = file($filename);
-	for ($i = 0; $i < count($file); $i++) {
-		//$file[$i] = explode(' ',$file[$i]);
-        $file[$i] = trim($file[$i]);
-		$file[$i] = preg_split('/\s+/',$file[$i]);
-
-        // was probably for non unix timestamp
-		//$file[$i][4] .= ' ' . $file[$i][5];
-	}
 	if(count($file) > $max) {
         //echo "count > max";
 		header('Location: http://'.$_SERVER['HTTP_HOST'].'/upload/error/'.count($file));
 	} else {
+        for ($i = 0; $i < count($file); $i++) {
+            //$file[$i] = explode(' ',$file[$i]);
+            $file[$i] = trim($file[$i]);
+            $file[$i] = preg_split('/\s+/',$file[$i]);
+
+            // was probably for non unix timestamp
+            //$file[$i][4] .= ' ' . $file[$i][5];
+        }
+
 		foreach ($file as $line) {
             //echo "parsing line";
             // line 0: latitude

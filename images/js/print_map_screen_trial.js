@@ -1,6 +1,7 @@
 var mapPoints = [];
 var playid;
 var timestep;
+var speed;
 function initialize() {
     centerLat = minLatLng.lat + (maxLatLng.lat - minLatLng.lat)/2;
     centerLng = minLatLng.lng + (maxLatLng.lng - minLatLng.lng)/2;
@@ -57,7 +58,7 @@ var update_map = function(locations, minLatLng, maxLatLng){
             'strokeOpacity':'0.0'
         });
         circle.time = locations[i][5];
-
+        x = circle;
         mapPoints.push(circle);
     }
     minTime = Math.min.apply(Math, mapPoints.map(function(v){return v.time;}));
@@ -66,8 +67,37 @@ var update_map = function(locations, minLatLng, maxLatLng){
 
     if (maxTime > minTime){
         timestep = (maxTime - minTime)/5;
+        $("#speed").val("2000");
+        $("#speed").change(function(){
+            speed = parseFloat($(this).val());
+            $("#play").click(function(){
+                if (playid === undefined){
+                    playid = setInterval(function(){
+                        var val1 = $("#slider").slider("option", "values")[0];
+                        var val2 = $("#slider").slider("option", "values")[1];
+                        var max = $("#slider").slider("option", "max");
+                        //val1 = Math.min(val1 + timestep, max - timestep);
+                        //val2 = Math.min(val2 + timestep, max);
+                        if (val2 < maxTime){
+                            val1 += timestep;
+                            val2 += timestep;
+                            $("#slider").slider({values:[val1, val2]});
+                        }else{
+                            $("#pause").click();
+                        }
+                    }, speed);
+                }
+            });
 
-        $("#slideshow").append('<div class="pull-left">Time Step: <input style="width:400px" id="amount"/><div>');
+        });
+
+        $("#stepSize").change(function(){
+            timestep = parseFloat($(this).val()) * 1000;
+            var val1 = minTime;
+            var val2 = minTime + timestep;
+            $("#slider").slider({values:[val1, val2]});
+           
+        });
         $("#slider").slider({
             range: true,
             values: [minTime, maxTime],
@@ -84,6 +114,7 @@ var update_map = function(locations, minLatLng, maxLatLng){
                     }else{
                         mapPoints[i].setMap(null);
                     }
+                    $("#stepSize").val((val2 - val1) / 1000);
                 }
                 // set up tick marks
                 var difference = maxTime - minTime;
@@ -110,6 +141,7 @@ var update_map = function(locations, minLatLng, maxLatLng){
             playid = undefined;
         });
         $("#play").click(function(){
+            speed = parseFloat($("#speed").val());
             if (playid === undefined){
                 playid = setInterval(function(){
                     var val1 = $("#slider").slider("option", "values")[0];
@@ -124,7 +156,7 @@ var update_map = function(locations, minLatLng, maxLatLng){
                     }else{
                         $("#pause").click();
                     }
-                }, 2000);
+                }, speed);
             }
         });
     }else{
@@ -153,6 +185,7 @@ var slideFunc = function(event, ui){
     var d1 = new Date(ui.values[0]);
     var d2 = new Date(ui.values[1]);
     timestep = d2.getTime() - d1.getTime();
+    $("#stepSize").val(timestep / 1000);
 };
 
 function dateString(temp) {

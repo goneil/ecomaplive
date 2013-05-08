@@ -35,7 +35,7 @@
 
                     $baseurl = "http://$_SERVER[HTTP_HOST]/project/" .
                                $project->getId() . "/admin";
-					echo '> <a href="', $baseurl, '/delete">Delete Project</a><br />';
+					echo '> <a id="delete" loc="', $baseurl, '/delete">Delete Project</a><br />';
 					if ($project->getPrivate() == 'Private'){
 						echo '> <a href="', $baseurl, '/setPublic">Set as Public</a><br />';
                     }
