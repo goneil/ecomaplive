@@ -92,7 +92,7 @@ var update_map = function(locations, minLatLng, maxLatLng){
         });
 
         $("#stepSize").change(function(){
-            timestep = parseFloat($(this).val()) * 1000;
+            timestep = parseFloat($(this).val()) * 60000;
             var val1 = minTime;
             var val2 = minTime + timestep;
             $("#slider").slider({values:[val1, val2]});
@@ -114,7 +114,7 @@ var update_map = function(locations, minLatLng, maxLatLng){
                     }else{
                         mapPoints[i].setMap(null);
                     }
-                    $("#stepSize").val((val2 - val1) / 1000);
+                    $("#stepSize").val((val2 - val1) / 60000);
                 }
                 // set up tick marks
                 var difference = maxTime - minTime;
@@ -185,7 +185,7 @@ var slideFunc = function(event, ui){
     var d1 = new Date(ui.values[0]);
     var d2 = new Date(ui.values[1]);
     timestep = d2.getTime() - d1.getTime();
-    $("#stepSize").val(timestep / 1000);
+    $("#stepSize").val(timestep / 60000);
 };
 
 function dateString(temp) {
