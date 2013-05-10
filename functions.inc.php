@@ -306,7 +306,7 @@ function filterQuotes($str) {
 function show_project_list($projs){
     foreach ($projs as $proj) {
         $p = new Project($proj);
-            echo "<li class='list-icon button project' id='" . $p->getName() . "'>";
+            echo "<li class='project-list-icon button project' id='" . $p->getName() . "'>";
                 echo '<a class="projectLink" href="http://',$_SERVER['HTTP_HOST'],'/project/',$p->getID(),'">'.$p->getName().'</a><br>';
                 echo 'Blurb: '.$p->getBlurb().'<br>';
                 echo 'Description: '.$p->getDescription();
@@ -319,7 +319,7 @@ function show_map_list($maps){
     foreach ($maps as $map) {
         $map = Map::loadMap($map);
 
-        echo "<li class='list-icon button map' id='" . $map->getName() . "'>";
+        echo "<li class='map-list-icon button map' id='" . $map->getName() . "'>";
                 echo '<a class="mapLink" href="http://',$_SERVER['HTTP_HOST'],'/map/',$map->getID(),'">'.$map->getName().'</a><br>';
         echo "</li>";
         if ($map->getName() == "first" || $map->getName() == "S02" ||
@@ -334,7 +334,7 @@ function show_map_list($maps){
 function show_plot_list($plots){
     foreach ($plots as $plot) {
         $plot = Plot::loadPlot($plot);
-        echo "<li class='list-icon button map' id='" . $plot->getName() . "'>";
+        echo "<li class='plot-list-icon button map' id='" . $plot->getName() . "'>";
                 echo '<a class="mapLink"
                 href="http://',$_SERVER['HTTP_HOST'],'/plot/',$plot->getID(),'">'.$plot->getName().'</a><br>';
         echo "</li>";
