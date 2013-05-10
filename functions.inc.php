@@ -322,10 +322,6 @@ function show_map_list($maps){
         echo "<li class='map-list-icon button map' id='" . $map->getName() . "'>";
                 echo '<a class="mapLink" href="http://',$_SERVER['HTTP_HOST'],'/map/',$map->getID(),'">'.$map->getName().'</a><br>';
         echo "</li>";
-        if ($map->getName() == "first" || $map->getName() == "S02" ||
-        $map->getName() == "overlayed trials"){
-            $map->remove();
-        }
     }
 
 }
@@ -338,10 +334,6 @@ function show_plot_list($plots){
                 echo '<a class="mapLink"
                 href="http://',$_SERVER['HTTP_HOST'],'/plot/',$plot->getID(),'">'.$plot->getName().'</a><br>';
         echo "</li>";
-        if ($plot->getName() == "first" || $plot->getName() == "S02" ||
-        $plot->getName() == "overlayed trials"){
-            $plot->remove();
-        }
     }
 
 }

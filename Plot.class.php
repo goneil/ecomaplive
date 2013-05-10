@@ -110,7 +110,7 @@ class Plot {
 	}
 
     function remove(){
-        echo "removeing plot";
+        echo "removing plot";
         $plot_points = PlotPoints::loadPlotPoints($this->id);
         $plot_points->remove();
         $query = "DELETE FROM `plots` WHERE id=".$this->id;
