@@ -330,26 +330,43 @@ function show_map_list($maps){
 
 }
 
+// Reusable functions
+function show_plot_list($plots){
+    foreach ($plots as $plot) {
+        $plot = Plot::loadPlot($plot);
+        echo "<li class='list-icon button map' id='" . $plot->getName() . "'>";
+                echo '<a class="mapLink"
+                href="http://',$_SERVER['HTTP_HOST'],'/plot/',$plot->getID(),'">'.$plot->getName().'</a><br>';
+        echo "</li>";
+        if ($plot->getName() == "first" || $plot->getName() == "S02" ||
+        $plot->getName() == "overlayed trials"){
+            $plot->remove();
+        }
+    }
 
-function printPlotScript($map,$options = array()) { 
+}
+
+
+
+function printPlotScript($plot, $options = array()) { 
 	$width = 550;
 	$height = 400;
-	if (!$map instanceof Map) $map = Map::loadMap($map);
-	$points = $map->getPoints();
+	if (!$plot instanceof Plot) $plot = Plot::loadPlot($plot);
+	$points = $plot->getPoints();
 	//then to pass through Options filters
 	if (isset($options['height'])) $height = $options['height'];
 	if (isset($options['width'])) $width = $options['width'];
-	if (isset($options['maps']) && $options['maps']) {
-		if (is_array($options['maps'])) {
-			foreach ($options['maps'] as $mapID) {
-				$temp_map = new Map($mapId);
-				foreach ($temp_map->getPoints() as $p) {
+	if (isset($options['plots']) && $options['plots']) {
+		if (is_array($options['plots'])) {
+			foreach ($options['plots'] as $plotID) {
+				$temp_plot = new Plot($plotId);
+				foreach ($temp_plot->getPoints() as $p) {
 					array_push($points, $p);
 				}
 			}
 		} else {
-			$temp_map = new Map($options['maps']);
-			foreach ($temp_map->getPoints() as $p) {
+			$temp_plot= new Plot($options['plots']);
+			foreach ($temp_plot->getPoints() as $p) {
 				array_push($points, $p);
 			}
 		}

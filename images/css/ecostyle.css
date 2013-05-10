@@ -202,7 +202,6 @@ form div{
     background-color: #FFFACD;
     padding: 5px 10px 5px 10px;
     overflow: auto;
-    width: 100%;
 
 }
 
@@ -251,6 +250,10 @@ form div{
 }
 
 #map{
+}
+
+.create-form{
+    font-size: 13pt;
 }
 
 #map-screen{

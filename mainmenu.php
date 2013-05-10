@@ -1,18 +1,21 @@
 <?php require_once('functions.inc.php'); ?>
 <div id="menu" style="z-index: 10;">
     <ul id="mainmenu">
-    <li><a href="http://<?php echo $_SERVER['HTTP_HOST'];?>/home">Home</a>
 	
 	<?php
 		if (loggedIn()) {
+			echo '<li><a href="http://'.$_SERVER['HTTP_HOST'].'/project">Home</a>';
 			echo '<li><a href="http://'.$_SERVER['HTTP_HOST'].'/project">My Projects</a>';
 			echo '</li>';
 			echo '<li><a href="http://'.$_SERVER['HTTP_HOST'].'/create_map">Create Map</a>';
+			echo '<li><a
+            href="http://'.$_SERVER['HTTP_HOST'].'/create_plot">Create Plot</a>';
 			echo '</li>';
 		} else {
+			echo '<li><a href="http://'.$_SERVER['HTTP_HOST'].'/project">Home</a>';
 			echo '<li><a href="http://'.$_SERVER['HTTP_HOST'].'/login">Login</a>';
 			echo '</li>';
-			echo '<li><a href="http://'.$_SERVER['HTTP_HOST'].'/demo">Quick Map</a>';
+			echo '<li><a href="http://'.$_SERVER['HTTP_HOST'].'/demo">View Demo</a>';
 			echo '</li>';
 		}
 	?>

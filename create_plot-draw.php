@@ -1,6 +1,6 @@
-<script type="text/javascript" src="/images/js/create_map.js"></script>
-<h2>Create New Map</h2>
-<form class="create-form" method="post" action="/create_map">
+<script type="text/javascript" src="/images/js/create_plot.js"></script>
+<h2>Create New Plot</h2>
+<form class="create-form" method="post" action="/create_plot">
     <div id="select_project">
         Project: 
         <select name="project_id">
@@ -35,7 +35,7 @@
     </div>
     <div>
         <div class="input_title">
-            <input type="text" placeholder="Map Title" name="map_name" />
+            <input type="text" placeholder="Plot Title" name="plot_name" />
         </div>
     </div>
     <div id="dates">
@@ -66,7 +66,7 @@
     <br/>
 
     <div>
-        <input class="btn" name="create_map" value="Submit" type="submit" />
+        <input class="btn" name="create_plot" value="Submit" type="submit" />
     </div>
 
 </form>

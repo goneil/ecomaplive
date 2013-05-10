@@ -9,6 +9,7 @@ class Project {
 	private $users;
 	private $admins;
 	private $maps;
+    private $plots;
 	private static $database;
 	
 	function __construct($id = 0) {
@@ -27,6 +28,7 @@ class Project {
 			$this->private = "";
 			$id = $this->id;
 			$this->maps = array();
+			$this->plots = array();
 			return;
 		}
 		$this->database = new Database;
@@ -58,6 +60,14 @@ class Project {
 			array_push($maps,$info['id']);
 		}
 		$this->maps = $maps;
+
+		$plots = array();
+		$query = "SELECT * FROM `plots` WHERE `project` = '$id'";
+		$plotQuery = $this->database->query($query);
+		while ($info = $plotQuery->fetch_array()) {
+			array_push($plots,$info['id']);
+		}
+		$this->plots= $plots;
 	}
 	
 	//requires all these variables set or else it breaks
@@ -144,7 +154,11 @@ class Project {
 	function getMaps() {
 		return $this->maps;
 	}
-	
+    
+    function getPlots() {
+		return $this->plots;
+	}
+
 	function isUser(User $user) {
 		$uid = $user->getID();
 		foreach ($this->users as $u) {
@@ -154,6 +168,11 @@ class Project {
 		}
 		return false;
 	}
+
+	function addPlot(Plot $plot) {
+        echo 'Project->addplot no longer functional';
+		array_push($this->plot,$plot->getID());
+    }
 	
 	function addMap(Map $map) {
         echo 'Project->addmap no longer functional';
@@ -178,6 +197,11 @@ class Project {
             $map = Map::loadMap($mapID);
             $map->remove();
         }
+        foreach($this->plots as $plotID){
+            $plot = Plot::loadPlot($plotID);
+            $plot->remove();
+        }
+
         $query = "SELECT id from point where project = $this->id";
         $results = $this->database->query($query);
         while (($row = $results->fetch_array())){

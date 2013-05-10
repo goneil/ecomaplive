@@ -24,10 +24,12 @@ switch ($request[0]) {
 	case 'user': $calc = 'user-calc.php'; break;
 	case 'login': $calc = 'login-calc.php'; break;
 	case 'map': $calc = 'map-calc.php'; break;
+	case 'plot': $calc = 'plot-calc.php'; break;
 	case 'project': $calc = 'project-calc.php'; break;
 	case 'projects': $calc = 'projects-calc.php'; break;
 	case 'demo': $calc = 'demo-calc.php'; break;
 	case 'create_map': $calc = 'create_map-calc.php'; break;
+	case 'create_plot': $calc = 'create_plot-calc.php'; break;
 	default: $calc = 'index-calc.php';
 }
 include($calc);
@@ -89,10 +91,12 @@ if (loggedIn()) {
 			case 'user': $draw = 'user-draw.php'; break;
 			case 'login': $draw = 'login-draw.php'; break;
 			case 'map': $draw = 'map-draw.php'; break;
+			case 'plot': $draw = 'plot-draw.php'; break;
 			case 'project': $draw = 'project-draw.php'; break;
 			case 'projects': $draw = 'projects-draw.php'; break;
 			case 'demo': $draw = 'demo-draw.php'; break;
 	        case 'create_map': $draw = 'create_map-draw.php'; break;
+	        case 'create_plot': $draw = 'create_plot-draw.php'; break;
 			default: $draw = 'index-draw.php';
 		}
 	}

@@ -1,4 +1,4 @@
-<script type="text/javascript" src="/images/js/map.js"></script>
+<script type="text/javascript" src="/images/js/plot.js"></script>
 
 <?php
 if (!isset($request[1])) { 
@@ -6,11 +6,11 @@ if (!isset($request[1])) {
 
 
 <div>
-	<h2>Maps</h2>
-	Please type the maps numbers you would like to see.  You can put multiple, separated by spaces.  You can also filter by users.  Leave fields blank if unnecessary. <br />
+	<h2>Plots</h2>
+	Please type the plots numbers you would like to see.  You can put multiple, separated by spaces.  You can also filter by users.  Leave fields blank if unnecessary. <br />
 	<br />
 	<form method="post" style="z-index: 1;">
-		Maps: <input name="maps" /><br />
+		Plots: <input name="plots" /><br />
 		User: <input name="users" /><br />
 		Start date: <input name="start" /><br />
 		End date: <input name="end" /><br />
@@ -20,12 +20,14 @@ if (!isset($request[1])) {
 </div>
 <?php 
 } else {
-    echo '<div id="map-header">';
-	echo '<div id="map-title">Map: ' .$map->getName().'</div>';
+    echo '<div id="plot-header">';
+	echo '<div id="plot-title">Plot: ' .$plot->getName().'</div>';
+    echo '</br>';
+    echo '</br>';
     echo '</div>';
 }
-echo '<div id="map-screen">';
-printMapScript($map,$options);
+echo '<div id="plot-screen">';
+printPlotScript($plot, $options);
 echo '</div>';
 
 echo '<div style="margin: 15px auto;"><br></div>';

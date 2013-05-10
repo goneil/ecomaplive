@@ -5,7 +5,7 @@ if (isset($_POST['login'])) {
 	if (!$_SESSION['user']->login($_POST['uname'], $_POST['pass'])) {
 		echo "<b>Error logging in.</b>";
 	} else {
-		header('Location: http://'.$_SERVER['HTTP_HOST'].'') ;
+		header('Location: http://'.$_SERVER['HTTP_HOST'].'/project') ;
 	}
 }
 ?>

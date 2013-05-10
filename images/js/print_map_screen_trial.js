@@ -25,12 +25,17 @@ var animateMap = function(){
 
 var update_map = function(locations, minLatLng, maxLatLng){
     if (!minLatLng || !maxLatLng){
-        var minLat = Math.min.apply(Math, locations.map(function(v){return v[0];}));
-        var maxLat = Math.max.apply(Math, locations.map(function(v){return v[0];}));
-        var minLng = Math.min.apply(Math, locations.map(function(v){return v[1];}));
-        var maxLng = Math.max.apply(Math, locations.map(function(v){return v[1];}));
-        minLatLng = new google.maps.LatLng(minLat, minLng);
-        maxLatLng = new google.maps.LatLng(maxLat, maxLng);
+        if (locations.length > 0){
+            var minLat = Math.min.apply(Math, locations.map(function(v){return v[0];}));
+            var maxLat = Math.max.apply(Math, locations.map(function(v){return v[0];}));
+            var minLng = Math.min.apply(Math, locations.map(function(v){return v[1];}));
+            var maxLng = Math.max.apply(Math, locations.map(function(v){return v[1];}));
+            minLatLng = new google.maps.LatLng(minLat, minLng);
+            maxLatLng = new google.maps.LatLng(maxLat, maxLng);
+        } else{
+            minLatLng = new google.maps.LatLng(42.351313,-71.112013);
+            maxLatLng = new google.maps.LatLng(42.363903,-71.078196);
+        }
     }
     // set bounds for the map
     bounds = new google.maps.LatLngBounds();

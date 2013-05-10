@@ -7,6 +7,8 @@ if (isset($_POST['newUser'])) {
 	if (!$_SESSION['user']->createUser($_POST['uname'], $_POST['pass'], $_POST['name'], $_POST['email'])) {
         //TODO fix error message
 		echo "User not created";
-	}
+	} else{
+		header('Location: http://'.$_SERVER['HTTP_HOST'].'/project') ;
+    }
 }
 ?>

@@ -19,11 +19,9 @@ if (isset($_POST['demo'])) {
 	$lat = process($_POST['lat']);
 	$lng = process($_POST['lng']);
 	$radius = process($_POST['radius']);
-	$value = process($_POST['value']);
 	for ($i = 0; $i < count($lat); $i++) {
-		if ($value[$i] > 1) $value[$i] = 1;
-		if ($value[$i] < 0) $value[$i] = 0;
-		$point = new Point(0, $lat[$i], $lng[$i], $radius[$i], $value[$i]);
+		$point = new Point(0, $lat[$i], $lng[$i], $radius[$i], 1, "",
+        new Database());
 		array_push($_SESSION['points'], $point);
 	}
 }
