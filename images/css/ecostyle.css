@@ -195,7 +195,7 @@ form div{
     float: right;
 }
 
-.map-list-icon .plot-list-icon{
+.map-list-icon,.plot-list-icon{
     margin-top: 10px;
     margin-bottom: 10px;
     list-style-type: none;
