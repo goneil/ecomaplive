@@ -136,13 +136,23 @@ function printMapScript($map,$options = array()) {
         <?php echo $height;?>px;"></div>-->
 	<div id="map" style="z-index: 0; width: 100%; height: 100%;"></div>
 	<div id="slideshow" style="z-index: 0; width: 100%;">
-        <span>
+        <span class="margin5">
             Speed (ms):<input class="input-small" id="speed" placeholder="100"/>
         </span>
-        <span>
+        <span class="margin5">
             Step Size(minutes):<input class="input-small" id="stepSize"
             placeholder="100"/>
         </span>
+
+        <span class="btn-group margin5" data-toggle="buttons-radio">
+            <button type="button" id="btnAbsolute" class="btn btn-success active">Absolute</button>
+            <button type="button" id="btnNormalized" class="btn btn-success">Normalized</button>
+        </span>
+            <span id="normalizedInput" style="display: none">
+            <input id="normMin" class="input-small" placeholder="min"/>
+            <input id="normMax" class="input-small" placeholder="max"/>
+            </span>
+
         </br>
 
 

@@ -20,6 +20,14 @@ function initialize() {
 }
 google.maps.event.addDomListener(window, 'load', initialize);
 
+$("#btnAbsolute").click(function(){
+    $("#normalizedInput").hide();
+});
+
+$("#btnNormalized").click(function(){
+    $("#normalizedInput").show();
+});
+
 var animateMap = function(){
 };
 
