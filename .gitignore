@@ -1,4 +1,4 @@
 logs/
 .htaccess
-config.inc.php
+./config.inc.php
 images/tmp/*
