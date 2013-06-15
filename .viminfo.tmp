@@ -8,13 +8,12 @@
 # hlsearch on (H) or off (h):
 ~h
 # Last Search Pattern:
-~MSle0~/>
+~MSle0~/show
 
 # Command Line History (newest to oldest):
-:q
 :w
-:tabf index-draw.php
 :set paste
+:q
 :tabf .gitignore
 :tabf upload-draw.php
 :tabf about/vision.php
@@ -40,11 +39,6 @@
 :tabf /etc/my.cnf
 
 # Search String History (newest to oldest):
-?/>
-?/<<
-?/point
-?/points
-?/remove
 ?/show
 ?/Upl
 ?/loaded
@@ -85,80 +79,43 @@
 # Registers:
 "0	LINE	0
 			$this->connection->close();
-""1	LINE	0
-	>>>>>>> e8fca331043fad7ae6ef591b298de55fe0969dce
-"2	LINE	0
-	-- Dump completed on 2013-05-20 13:58:33
-"3	LINE	0
-	=======
-"4	LINE	0
-	<<<<<<< HEAD
-"5	LINE	0
-	<?php echo PHP_MAJOR_VERSION;?>
-"6	LINE	0
-	echo PHP_MAJOR_VERSION;
-"7	LINE	0
+"1	LINE	0
 	        echo "loaded all points";
+"2	LINE	0
+	
+"3	LINE	0
+	    overflow:scroll;
+"4	LINE	0
+	        $("#slideshow").append('<div>Time Range: <input id="amount"/><div>');
+"5	LINE	0
+	    overflow:scroll;
+"6	LINE	0
+	        console.log("times different")
+"7	LINE	0
+	        echo "forloop end";
 "8	LINE	0
 	
 "9	LINE	0
-	    overflow:scroll;
-"-	CHAR	0
-	)
+	        $database = new Database();
+""-	CHAR	0
+	e
 
 # File marks:
-'0  4  0  ~/db_dmps/demo_db.sql
-'1  1  0  ~/index-draw.php
-'2  131  12  ~/demo_db.sql
-'3  1  1  ~/config.inc.php
-'4  281  25  ~/functions.inc.php
-'5  327  18  ~/functions.inc.php
-'6  15  2  ~/config.inc.php
-'7  313  9  ~/functions.inc.php
-'8  69  0  ~/map-calc.php
-'9  51  4  ~/Point.class.php
+'0  313  9  ~/functions.inc.php
+'1  69  0  ~/map-calc.php
+'2  51  4  ~/Point.class.php
+'3  101  8  ~/Map.class.php
+'4  82  21  ~/db_scripts/convert_db.py
+'5  1  4  ~/.gitignore
+'6  1  0  ~/.vimrc
 
 # Jumplist (newest first):
--'  4  0  ~/db_dmps/demo_db.sql
--'  1  0  ~/db_dmps/demo_db.sql
--'  1  0  ~/index-draw.php
--'  2  0  ~/index-draw.php
--'  7  0  ~/index.php
--'  1  0  ~/index.php
--'  131  12  ~/demo_db.sql
--'  89  26  ~/demo_db.sql
--'  88  17  ~/demo_db.sql
--'  87  26  ~/demo_db.sql
--'  86  17  ~/demo_db.sql
--'  83  31  ~/demo_db.sql
--'  78  35  ~/demo_db.sql
--'  77  3  ~/demo_db.sql
--'  75  18  ~/demo_db.sql
--'  72  26  ~/demo_db.sql
--'  69  34  ~/demo_db.sql
--'  39  25  ~/demo_db.sql
--'  38  16  ~/demo_db.sql
--'  37  25  ~/demo_db.sql
--'  36  16  ~/demo_db.sql
--'  33  30  ~/demo_db.sql
--'  28  33  ~/demo_db.sql
--'  27  3  ~/demo_db.sql
--'  25  17  ~/demo_db.sql
--'  22  25  ~/demo_db.sql
--'  19  33  ~/demo_db.sql
--'  1  25  ~/demo_db.sql
--'  170  282  ~/demo_db.sql
--'  1  1  ~/config.inc.php
--'  281  25  ~/functions.inc.php
--'  277  15  ~/functions.inc.php
--'  1  0  ~/functions.inc.php
--'  327  18  ~/functions.inc.php
--'  15  2  ~/config.inc.php
 -'  313  9  ~/functions.inc.php
 -'  314  0  ~/functions.inc.php
 -'  295  9  ~/functions.inc.php
 -'  138  15  ~/functions.inc.php
 -'  427  0  ~/functions.inc.php
+-'  1  0  ~/functions.inc.php
 -'  69  0  ~/map-calc.php
 -'  1  0  ~/map-calc.php
 -'  51  4  ~/Point.class.php
@@ -201,67 +158,58 @@
 -'  1  0  ~/.vimrc
 -'  1  0  ~/.vimrc
 -'  51  4  ~/Point.class.php
--'  131  12  ~/demo_db.sql
--'  89  26  ~/demo_db.sql
--'  88  17  ~/demo_db.sql
--'  87  26  ~/demo_db.sql
--'  86  17  ~/demo_db.sql
--'  83  31  ~/demo_db.sql
--'  78  35  ~/demo_db.sql
--'  77  3  ~/demo_db.sql
--'  75  18  ~/demo_db.sql
--'  72  26  ~/demo_db.sql
--'  69  34  ~/demo_db.sql
--'  39  25  ~/demo_db.sql
--'  38  16  ~/demo_db.sql
--'  37  25  ~/demo_db.sql
--'  36  16  ~/demo_db.sql
--'  33  30  ~/demo_db.sql
--'  1  0  ~/index-draw.php
+-'  1  0  ~/Point.class.php
+-'  101  8  ~/Map.class.php
+-'  1  4  ~/Map.class.php
+-'  29  0  ~/map-draw.php
+-'  30  0  ~/map-draw.php
+-'  31  6  ~/map-draw.php
+-'  27  2  ~/project-calc.php
+-'  1  0  ~/project-calc.php
+-'  82  21  ~/db_scripts/convert_db.py
+-'  1  0  ~/db_scripts/convert_db.py
+-'  1  4  ~/.gitignore
+-'  1  0  ~/.vimrc
+-'  1  0  ~/.vimrc
+-'  1  0  ~/.vimrc
+-'  1  0  ~/.vimrc
+-'  1  0  ~/.vimrc
+-'  1  0  ~/.vimrc
+-'  1  0  ~/.vimrc
+-'  1  0  ~/.vimrc
+-'  82  21  ~/db_scripts/convert_db.py
+-'  1  0  ~/db_scripts/convert_db.py
+-'  1  0  ~/.vimrc
+-'  1  0  ~/.vimrc
+-'  1  0  ~/.vimrc
+-'  1  0  ~/.vimrc
+-'  1  0  ~/.vimrc
+-'  1  0  ~/.vimrc
+-'  1  0  ~/.vimrc
+-'  1  0  ~/.vimrc
+-'  1  0  ~/.vimrc
+-'  1  0  ~/.vimrc
+-'  1  0  ~/.vimrc
+-'  1  0  ~/.vimrc
+-'  1  0  ~/.vimrc
+-'  1  0  ~/.vimrc
+-'  1  0  ~/.vimrc
+-'  1  0  ~/.vimrc
+-'  69  0  ~/map-calc.php
+-'  1  0  ~/map-calc.php
+-'  51  4  ~/Point.class.php
+-'  1  0  ~/Point.class.php
+-'  101  8  ~/Map.class.php
+-'  1  4  ~/Map.class.php
+-'  29  0  ~/map-draw.php
+-'  30  0  ~/map-draw.php
+-'  31  6  ~/map-draw.php
+-'  27  2  ~/project-calc.php
 
 # History of marks within files (newest to oldest):
 
-> ~/db_dmps/demo_db.sql
-	"	4	0
-	.	239	0
-	+	238	0
-	+	239	0
-
-> ~/index.php
-	"	6	0
-	.	7	0
-	+	7	0
-	+	7	0
-
-> ~/index-draw.php
-	"	1	0
-	.	2	0
-	+	2	0
-	+	2	0
-
-> ~/demo_db.sql
-	"	131	12
-	^	131	14
-	.	131	13
-	+	131	13
-
-> ~/config.inc.php
-	"	1	1
-	^	1	2
-	.	1	0
-	+	12	1
-	+	13	0
-	+	14	0
-	+	15	0
-	+	17	0
-	+	18	0
-	+	19	0
-	+	20	0
-	+	15	0
-	+	1	0
-
 > ~/functions.inc.php
-	"	281	25
+	"	313	9
 	.	314	0
 	+	314	0
 	+	314	69
@@ -288,6 +236,19 @@
 	+	15	11
 	+	14	12
 	+	44	39
+
+> ~/config.inc.php
+	"	20	0
+	^	15	2
+	.	20	0
+	+	12	1
+	+	13	0
+	+	14	0
+	+	15	0
+	+	17	0
+	+	18	0
+	+	19	0
+	+	20	0
 
 > ~/Map.class.php
 	"	101	8

@@ -1,5 +1,15 @@
 <h2>Upload data points</h2>
-<p>You can upload data point files here. Please follow the format of our <a href="https://github.com/goneil/ecomaplive/blob/master/data_files/mit_points.dat">example</a> data file. Each row should contain longitude, latitude, value, and alpha.</p><br />
+<p>
+From this page, you can upload additional data points to any exisitng project. 
+Each file can have a maximum of 1,000 lines.
+Please use the following format for each line:<br/>
+<br/>
+TimeStamp,Latitude,Longitude,Value<br/>
+<br/>
+For more information on proper data formatting and using Eco-Map web site,
+please view our <a href= "../ecomap-data-api">Map API.</a>
+
+</p><br />
 <?php
 	if (!isset($_POST['upload'])) { ?>
 		<form enctype="multipart/form-data" method="POST"> 

@@ -34,7 +34,7 @@
         </select>
     </div>
     <div>
-        <div class="input_title">
+        <div style="margin-left: 50px;">
             <input type="text" placeholder="Map Title" name="map_name" />
         </div>
     </div>

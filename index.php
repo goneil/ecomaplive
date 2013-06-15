@@ -58,6 +58,7 @@ if (loggedIn()) {
           src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCtAl9vuAhzcuv2jv83KUOYvb6bcLYvEs&sensor=true">
     </script>
 
+    <script type="text/javascript" src="/images/resources/bootstrap.min.js"></script>
 
 <link rel="stylesheet" type="text/css" href="/images/resources/techlab-SmartWizard-5e911ba/styles/smart_wizard.css">
 <script type="text/javascript" src="/images/resources/techlab-SmartWizard-5e911ba/js/jquery.smartWizard-2.0.min.js "></script>
@@ -97,6 +98,7 @@ if (loggedIn()) {
 			case 'demo': $draw = 'demo-draw.php'; break;
 	        case 'create_map': $draw = 'create_map-draw.php'; break;
 	        case 'create_plot': $draw = 'create_plot-draw.php'; break;
+			case 'ecomap-data-api': $draw = 'ecomap-data-api-draw.php';break;
 			default: $draw = 'index-draw.php';
 		}
 	}

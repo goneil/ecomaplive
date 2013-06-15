@@ -30,7 +30,8 @@ date_default_timezone_set('America/New_York');
         }
         if ($max_lng){
             $query = $query . " and lng <= $max_lng";
-        }
+        } 
+        $query = $query . " and lat != 1000";
 
         $database = new Database();
         $info = $database->query($query);
@@ -41,24 +42,10 @@ date_default_timezone_set('America/New_York');
             }
             // must happen in this order
             $map = new Map($map_name, $project_id, $isPrivate);
-            //if ($map->map_exists()){
-                //$database = new Database();
-                //$query = "SELECT name FROM project WHERE id=$project_id";
-                //$info = $database->query($query);
-                //$row = $info->fetch_array();
-                //$project_name = $row['name'];
-                //$error_message = "Error: Cannot Create Visualization" . 
-                                 //": A map by the name " .
-                                 //$map->getName() . " in project, " . $project_name . 
-                                 //", already exists";
-            //}
-            //else{
-                $map->exportToDB();
-                $map_point = new MapPoints($map->getID(), $point_list);
-                $map_point->exportToDB();
-                header("Location: /map/" . $map->getID());
-            //}
-
+            $map->exportToDB();
+            $map_point = new MapPoints($map->getID(), $point_list);
+            $map_point->exportToDB();
+            header("Location: /map/" . $map->getID());
         }
         
 

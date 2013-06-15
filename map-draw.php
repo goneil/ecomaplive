@@ -1,5 +1,3 @@
-<script type="text/javascript" src="/images/js/map.js"></script>
-
 <?php
 if (!isset($request[1])) { 
 ?>

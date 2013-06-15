@@ -46,6 +46,7 @@ if (isset($request[1])) {
 
 	}
 } else {
+    echo '<div style="overflow:auto;">';
 	echo '<div class="pull-left"><h2 >My Existing Projects:</h2></div>';
 	if (loggedIn()){
         ?>
@@ -54,6 +55,7 @@ if (isset($request[1])) {
             $_SERVER['HTTP_HOST'];?>/project/add/">New Project</a>
         </div>
         
+	    </div>
         <?php
 
 		$projs = getUserProjects($userInfo['uid']);
