@@ -25,7 +25,7 @@ function initialize() {
 $("#check-blur").click(function(){
     if (this.checked){
         blur_const = 7;
-        opacity = 0.2;
+        opacity = 0.3;
         mapPoints.forEach(function(point){
             point.setMap(null);
         });
