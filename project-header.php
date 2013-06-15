@@ -17,8 +17,7 @@
 		echo 'Blurb: ',$project->getBlurb(),'<br />';
 		echo 'This project is ',$project->getPrivate(),'<br />';
         echo "<div>
-                Total Data Points: <input class='input-small' disabled
-                value='$totalPoints'>
+                Total Data Points: <span>$totalPoints</span>
               </div>";
 		if (loggedIn() && $project->isAdmin($userInfo['uid'])) {
 			if (isset($request[2]) && $request[2] == 'admin') {

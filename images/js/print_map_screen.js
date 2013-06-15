@@ -2,6 +2,9 @@ var mapPoints = [];
 var playid;
 var timestep;
 var speed;
+var blur_const = 1;
+var opacity = 0.7;
+
 function initialize() {
     centerLat = minLatLng.lat + (maxLatLng.lat - minLatLng.lat)/2;
     centerLng = minLatLng.lng + (maxLatLng.lng - minLatLng.lng)/2;
@@ -18,24 +21,57 @@ function initialize() {
         mapOptions);
     update_map(locations, minLatLng, maxLatLng);
 }
+
+$("#check-blur").click(function(){
+    if (this.checked){
+        blur_const = 7;
+        opacity = 0.2;
+        mapPoints.forEach(function(point){
+            point.setMap(null);
+        });
+        mapPoints = [];
+        update_map(locations, minLatLng, maxLatLng);
+    } else{
+        blur_const = 1;
+        opacity = 0.7;
+        mapPoints.forEach(function(point){
+            point.setMap(null);
+        });
+        mapPoints = [];
+        update_map(locations, minLatLng, maxLatLng);
+    }
+    $("#btnAbsolute").click();
+});
+
 google.maps.event.addDomListener(window, 'load', initialize);
 
 $("#btnAbsolute").click(function(){
     $("#normalizedInput").hide();
+    absoluteData();
 });
 
 $("#btnNormalized").click(function(){
     $("#normalizedInput").show();
+    if ($("#normMin").val() !== "" && $("#normMax").val() !== ""){
+        normalizeData($("#normMin").val(), $("#normMax").val());
+    }
 });
 
 $("#btnRefresh").click(function(){
-    var circleRadius = parseInt($("#circleRadius").val(), 10);
+    var newRadius = parseInt($("#circleRadius").val(), 10);
     for (var i = 0; i < mapPoints.length; i ++){
-        mapPoints[i].setRadius(circleRadius);
+        mapPoints[i].setRadius(mapPoints[i].getRadius() * newRadius / radius);
+    }
+    radius = newRadius;
+    if ($("#btnAbsolute").hasClass("active")){
+        absoluteData();
+    } else{
+        normalizeData($("#normMin").val(), $("#normMax").val());
     }
 });
-$("#slideshow").keypress(function(e){
+$("#mapSettings").keypress(function(e){
     if (e.which == 13){
+        console.log("enter");
         $("#btnRefresh").click();
     }
 });
@@ -61,28 +97,42 @@ var update_map = function(locations, minLatLng, maxLatLng){
     map.fitBounds(bounds);
     $("#circleRadius").val("50");
 
+    maxVal = -1.7976931348623157E+10308; //public on purpose
+    minVal = 1.7976931348623157E+10308; //public on purpose
+    for (var i = 0; i < locations.length; i ++){
+        var val = locations[i][3];
+        if (val < minVal){
+            minVal = val;
+        }
+        if (val > maxVal){
+            maxVal = val;
+        }
+    }
+
     // place points on map
     // locations is an array with following structure:
     // radius is now harcoded to 1
     // [ [lat, lng, radius, value, id, time], ... ]
     for (var i = 0; i < locations.length; i ++){
         latLng = new google.maps.LatLng(locations[i][0], locations[i][1]);
-        var value = parseInt((locations[i][3])/((max+1))*255, 10);
-        //var color = "#" + d2h(255 - value)  + d2h(value) + "00";
-        var color = "rgb(" + h[clamp(parseInt(locations[i][3] * h.length, 10), 0, h.length - 1)] + ")";
-        var circle = new google.maps.Circle({
-            'center': latLng,
-            'clickable':false,
-            'fillColor': color, //decimalToRGB(1.0 - locations[i][3]),
-            'fillOpacity':0.5,
-            'map':map,
-            'radius':parseInt($("#circleRadius").val(), 10),
-            'strokeColor':'#0000A0',
-            'strokeOpacity':'0.0'
-        });
-        circle.time = locations[i][5];
-        x = circle;
-        mapPoints.push(circle);
+        var color = colorFromValue(locations[i][3], minVal, maxVal);
+        radius = parseInt($("#circleRadius").val(), 10); // purposely public
+        for (var j = 0; j <= radius; j += radius / blur_const){
+            var circle = new google.maps.Circle({
+                'center': latLng,
+                'clickable':false,
+                'fillColor': color, //decimalToRGB(1.0 - locations[i][3]),
+                'fillOpacity':opacity,
+                'map':map,
+                'radius':j,
+                'strokeColor':'#0000A0',
+                'strokeOpacity':'0.0'
+            });
+            circle.time = locations[i][5];
+            x = circle;
+            circle.originalValue = locations[i][3];
+            mapPoints.push(circle);
+        }
     }
     minTime = Math.min.apply(Math, mapPoints.map(function(v){return v.time;}));
     maxTime = Math.max.apply(Math, mapPoints.map(function(v){return v.time;}));
@@ -186,8 +236,7 @@ var update_map = function(locations, minLatLng, maxLatLng){
         $("#slideshow").hide();
     }
 
-
-
+    absoluteData();
 };
 
 var changeFunc = function(event, ui){
@@ -237,6 +286,30 @@ var decimalToRGB = function(dec){
     var min = h2d("8B0000");
     var scalingFactor = max - min;
     return "#" + d2h(min + parseInt(dec * scalingFactor, 10));
+};
+
+var normalizeData = function(min, max){
+    for (var i = 0; i < mapPoints.length; i ++){
+        var originalValue = mapPoints[i].originalValue;
+        var normValue = (clamp(originalValue, min, max) - min) / (max - min);
+        mapPoints[i].fillColor = colorFromValue(normValue);
+        refreshPoint(mapPoints[i]);
+    }
+};
+
+var refreshPoint = function(mapPoint){
+    var currMap = mapPoint.getMap();
+    mapPoint.setMap(null);
+    mapPoint.setMap(currMap);
+};
+
+var absoluteData = function(){
+    normalizeData(minVal, maxVal);
+};
+
+var colorFromValue = function(val, maxVal, minVal){
+    var color = "rgb(" + h[clamp(parseInt(val * h.length, 10), 0, h.length - 1)] + ")";
+    return color;
 };
 
 //define the colours from 0 to 100

@@ -4,7 +4,7 @@ From this page, you can upload additional data points to any exisitng project.
 Each file can have a maximum of 1,000 lines.
 Please use the following format for each line:<br/>
 <br/>
-TimeStamp,Latitude,Longitude,Radius,Value<br/>
+TimeStamp,Latitude,Longitude,Value<br/>
 <br/>
 For more information on proper data formatting and using Eco-Map web site,
 please view our <a href= "../ecomap-data-api">Map API.</a>

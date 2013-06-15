@@ -6,13 +6,12 @@
     For a reference, please see <a HREF= "http://www.epochconverter.com/"> Epoch Time
     converter</a>
     Latitude and logitude are in decimal degrees (not degrees, minutes, seconds)
-    Radius is in meters
     Value is a raw sensor value (the default range is normalized 0 to 1)
     <br/>
     <br/>
     Example:<br/>
-    00000001358209282.250,+42.353862,-071.090968,80,0.2<br/>
-    00000001358209283.500,+42.353862,-071.090968,80,0.3
+    00000001358209282.250,+42.353862,-071.090968,0.2<br/>
+    00000001358209283.500,+42.353862,-071.090968,0.3
     <br/>
     <br/>
     You can download a sample data file <a

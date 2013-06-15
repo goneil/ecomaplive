@@ -1,6 +1,6 @@
 <?php 
 if (isset($_POST['upload'])) {
-	$max = 150;
+	$max = 1000;
 	if (!loggedIn()) {
 		filterQuotes($_POST['user']);
 		filterQuotes($_POST['pass']);
@@ -18,7 +18,7 @@ if (isset($_POST['upload'])) {
         for ($i = 0; $i < count($file); $i++) {
             //$file[$i] = explode(' ',$file[$i]);
             $file[$i] = trim($file[$i]);
-            $file[$i] = preg_split('/[\s\,]+/',$file[$i]);
+            $file[$i] = preg_split('/[\,]+/',$file[$i]);
             // was probably for non unix timestamp
             //$file[$i][4] .= ' ' . $file[$i][5];
         }
@@ -28,11 +28,14 @@ if (isset($_POST['upload'])) {
             $time = $line[0];
             $lat  = $line[1];
             $lng  = $line[2];
-            $rad  = $line[3];
-            $val  = $line[4];
+            $rad  = 1;
+            $val  = $line[3];
 
-
-            //TODO change to project not map
+            if (!is_numeric($lat) || !is_numeric($lng)){
+                // set to bogus values
+                $lat = 1000;
+                $lng = 1000;
+            }
 			$point = new Point($project->getID(), $lat, $lng, $rad, $val, $time);
             $point->exportToDB();
 		}

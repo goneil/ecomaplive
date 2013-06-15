@@ -67,8 +67,8 @@ var absoluteData = function(){
 };
 
 var drawPlot = function(){
-    $("#plot").empty();
-    $.jqplot('plot', [plotValues], {
+    $("#plotContainer").empty();
+    $.jqplot('plotContainer', [plotValues], {
         title: "The Dependence of Value on Time",
         axes: {
             xaxis: {

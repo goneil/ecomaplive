@@ -350,7 +350,7 @@ form div{
     margin-bottom: 2%;
 }
 
-#plot{
+#plotContainer{
     height: 400px;
 }
 
@@ -396,7 +396,7 @@ form div{
     text-align: center;
     line-height: 100%;
     -webkit-transform: rotate(-90deg); 
-    -moz-transform: rotate(-90deg)
+    transform: rotate(-90deg);
     filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 
 }

@@ -135,56 +135,67 @@ function printMapScript($map,$options = array()) {
 	<!--<div id="map" style="z-index: 0; width: <?php echo $width;?>px; height:
         <?php echo $height;?>px;"></div>-->
 	<div id="map" style="z-index: 0; width: 100%; height: 100%;"></div>
-	<div id="slideshow" style="z-index: 0; width: 100%;">
+    <div id="mapSettings">
+        <b>Display Settings:</b>
         <span class="margin5">
-            Speed (ms):<input class="input-small" id="speed" placeholder="100"/>
-        </span>
-        <span class="margin5">
-            Step Size(minutes):<input class="input-small" id="stepSize"
-            placeholder="100"/>
+            Circle Radius:<input class="input-small" id="circleRadius"/>
         </span>
 
         <span class="btn-group margin5" data-toggle="buttons-radio">
             <button type="button" id="btnAbsolute" class="btn btn-success active">Absolute</button>
             <button type="button" id="btnNormalized" class="btn btn-success">Normalized</button>
         </span>
-            <span id="normalizedInput" style="display: none">
+        <span id="normalizedInput" style="display: none">
             <input id="normMin" class="input-small" placeholder="min"/>
             <input id="normMax" class="input-small" placeholder="max"/>
+        </span>
+        <span class="margin5">
+            Blur Circles: 
+            <input id="check-blur" type="checkbox">
+        </span>
+        <span class="margin5">
+            <button class="btn" id="btnRefresh">Refresh</button>
+        </span>
+        <div id="slideshow" style="z-index: 0; width: 100%;">
+            <b>Animation Settings:</b>
+            <span class="margin5">
+                Speed (ms):<input class="input-small" id="speed" placeholder="100"/>
             </span>
-
-        </br>
-
-
-        <div id="play">
-            <button class="btn btn-small">
-                <i class="icon-play"></i>
-            </button>
-        </div>
-        <div id="pause">
-            <button class="btn btn-small">
-                <i class="icon-pause"></i>
-            </button>
-        </div>
-        <div>
-            <div id="slider"></div>
-            <div id="sliderTicks">
-                <span style="left: 0%"></span>
-                <span style="left: 10%"></span>
-                <span style="left: 20%"></span>
-                <span style="left: 30%"></span>
-                <span style="left: 40%"></span>
-                <span style="left: 50%"></span>
-                <span style="left: 60%"></span>
-                <span style="left: 70%"></span>
-                <span style="left: 80%"></span>
-                <span style="left: 90%"></span>
-                <span style="left: 100%"></span>
+            <span class="margin5">
+                Step Size(minutes):<input class="input-small" id="stepSize"
+                placeholder="100"/>
+            </span>
+            </br>
+            <div id="play">
+                <button class="btn btn-small">
+                    <i class="icon-play"></i>
+                </button>
+            </div>
+            <div id="pause">
+                <button class="btn btn-small">
+                    <i class="icon-pause"></i>
+                </button>
+            </div>
+            <div>
+                <div id="slider"></div>
+                <div id="sliderTicks">
+                    <span style="left: 0%"></span>
+                    <span style="left: 10%"></span>
+                    <span style="left: 20%"></span>
+                    <span style="left: 30%"></span>
+                    <span style="left: 40%"></span>
+                    <span style="left: 50%"></span>
+                    <span style="left: 60%"></span>
+                    <span style="left: 70%"></span>
+                    <span style="left: 80%"></span>
+                    <span style="left: 90%"></span>
+                    <span style="left: 100%"></span>
+                </div>
             </div>
         </div>
     </div>
     <script type="text/javascript" src="/images/js/circles.js"></script>
-	<script type='text/javascript' src='/images/js/print_map_screen_trial.js'></script>
+	<script type='text/javascript' src='/images/js/print_map_screen.js'></script>
 <?php 
 }
 
@@ -314,6 +325,7 @@ function filterQuotes($str) {
 
 // Reusable functions
 function show_project_list($projs){
+    echo "<div>";
     foreach ($projs as $proj) {
         $p = new Project($proj);
             echo "<li class='project-list-icon button project' id='" . $p->getName() . "'>";
@@ -322,6 +334,7 @@ function show_project_list($projs){
                 echo 'Description: '.$p->getDescription();
             echo "</li>";
     }
+    echo "</div>";
 }
 
 // Reusable functions
@@ -463,7 +476,23 @@ function printPlotScript($plot, $options = array()) {
     } 
     echo "</script>\n";
 
-    echo '<div id="plot"></div>';
+    echo '<div id="plotContainer"></div>';
+    ?>
+    <div id="controls">
+        <span class="btn-group margin5" data-toggle="buttons-radio">
+            <button type="button" id="btnAbsolute" class="btn btn-success active">Absolute</button>
+            <button type="button" id="btnNormalized" class="btn btn-success">Normalized</button>
+        </span>
+        <span id="normalizedInput" style="display: none">
+            <input id="normMin" class="input-small" placeholder="min"/>
+            <input id="normMax" class="input-small" placeholder="max"/>
+        </span>
+        <span class="margin5">
+            <button class="btn" id="btnRefresh">Refresh</button>
+        </span>
+    </div>
+    <?php
+
 }
 
 
