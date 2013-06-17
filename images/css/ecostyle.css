@@ -36,7 +36,7 @@
 	
     /*div.content ul{margin-left:160px; margin-right: 50px; margin-top:0px; margin-bottom:0px;}*/
 
-    body{min-width:800px;}
+    body{overflow: scroll;}
 
     #menu ul {padding-left:0;}
 
